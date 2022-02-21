@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
+@import url("//db.onlinewebfonts.com/c/07bc241768c969f6b6a27a7bf0dfb490?family=TT+Norms+Regular");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.main {
+  background-image: url(../img/colosseo02.png);
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: "TT Norms Regular", sans-serif;
+}
+
+.headerContainer {
+  margin-left: 0px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.678);
+  /* background-color: #121619; */
+  color: white;
+}
+
+.headerContainer h1 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 70px;
+  text-align: center;
+  /* height: auto; */
+  margin-bottom: 0.1rem;
+  font-weight: 50;
+  color: black;
+  /* font-family: "RocknRoll One", sans-serif; */
+  font-family: "TT Norms Regular", sans-serif;
+
+}
+
+.headerContainer p {
+  padding: 0;
+  font-size: 30px;
+  text-align: center;
+  font-weight: lighter;
+  color: black;
+}
+
+.headerContainer button {
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  background-color: #121619;
+  height: 50px;
+  width: 180px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.headerContainer button:hover {
+  background-color: #07090a;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.cities-text {
+  margin-top: 5rem;
+  margin-bottom: -6rem;
+}
+
+.cities-text h3 {
+  font-size: xx-large;
+  color: white;
+}
+
+
+@media only screen and (max-width: 950px) {
+  .cities-text {
+    margin-top: 1rem;
+  }
+  
+  .cities-text h3 {
+    font-size: xx-large;
+    color: white;
+    text-align: center;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 650px) {
+  .home {
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .headerContainer h1,
+  .headerContainer p {
+  } */
+
+  .headerContainer {
+    margin-left: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #121619;
+    color: white;
+  }
+
+  .headerContainer h1 {
+    text-align: center;
+    font-size: 30px;
+    height: 30px;
+    margin: 4%;
+    color: white;
+  }
+
+  .headerContainer p {
+    font-size: 20px;
+    color: white;
+    margin-top: 15%;
+    text-align: center;
+  }
+
+  .headerContainer button {
+    background-color: white;
+    color: #121619;
+    margin-bottom: 30px;
+  }
+
+  .headerContainer button:hover {
+    background-color: rgb(225, 225, 225);
+    color: #121619;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .home {
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .headerContainer h1,
+  .headerContainer p {
+  } */
+
+  .headerContainer {
+    margin-left: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #121619;
+    color: white;
+  }
+
+  .headerContainer h1 {
+    font-size: 20px;
+    height: 30px;
+    color: white;
+  }
+
+  .headerContainer p {
+    font-size: 14px;
+    color: white;
+  }
+
+  .headerContainer button {
+    background-color: white;
+    color: #121619;
+    margin-bottom: 30px;
+  }
+
+  .headerContainer button:hover {
+    background-color: rgb(225, 225, 225);
+    color: #121619;
+  }
+}

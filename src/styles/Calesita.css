@@ -1,0 +1,34 @@
+.sliderContainer {
+  height: auto;
+  /* width: 100%; */
+  /* background-color: blue; */
+  margin-top: 2rem;
+
+}
+
+
+.cardSlide {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  height: auto;
+  margin-right: 2rem;
+  /* background-color: rgb(175, 175, 175); */
+  /* padding: 2%; */
+  /* margin: 0.3rem; */
+}
+
+.cardSlide img {
+  margin: auto;
+  margin-top: 0;
+  /* display: block; */
+  width: 90%;
+  height: 15rem;
+  /* height: 100%; */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cardSlide h3 {
+  text-align: center;
+}

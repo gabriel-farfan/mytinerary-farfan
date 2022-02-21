@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+code {
+  font-family: "Courier New", monospace;
+}
+
+.nav {
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
