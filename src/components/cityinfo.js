@@ -4,7 +4,7 @@ const city = [
     image: "Bologna.jpg",
     name: "Bologna",
     description:
-      "Bolonia (en italiano: Bologna, en emiliano-romañol: Bulåggna) es una ciudad del norte de Italia, capital de la ciudad metropolitana homónima y de la región de Emilia-Romaña, situada entre los ríos Reno y Savena, cerca de los Apeninos. Es una de las ciudades históricas mejor conservadas y tiene el segundo casco antiguo medieval más grande de Europa, después del de Venecia.",
+      "Bologna is the capital and largest city of the Emilia-Romagna region in Northern Italy. It is the seventh most populous city in Italy with about 400,000 inhabitants and 150 different nationalities.[4] Its metropolitan area is home to more than 1,000,000 people.[5] It is known as the Fat, Red, and the Learn'd City due to its rich cuisine, red Spanish tiled rooftops, and being home to the oldest university in the western world.",
     population: "394.369",
   },
   {
@@ -12,7 +12,7 @@ const city = [
     image: "Capri.jpg",
     name: "Capri",
     description:
-      "La isla de Capri es una isla de Italia localizada en el mar Tirreno, en el lado sur del golfo de Nápoles, frente a la península Sorrentina. Ha sido un lugar de célebre belleza y centro vacacional desde la época de la antigua república romana.",
+      "Capri is an island located in the Tyrrhenian Sea off the Sorrento Peninsula, on the south side of the Gulf of Naples in the Campania region of Italy. The main town Capri that is located on the island shares the name. It has been a resort since the time of the Roman Republic.",
     population: "13.839",
   },
 
@@ -21,7 +21,7 @@ const city = [
     image: "Firenze.jpg",
     name: "Firenze",
     description:
-      "Florencia (en italiano, Firenze) es una ciudad situada en el norte de la región central de Italia, capital y ciudad más poblada de la ciudad metropolitana homónima y de la región de Toscana, de la que es su centro histórico, artístico, económico y administrativo. Cuenta con unos 378 239 habitantes,2​ y es el centro de un área metropolitana de aproximadamente un millón y medio de habitantes.",
+      "Florence is a city in Central Italy and the capital city of the Tuscany region. It is the most populated city in Tuscany. Florence was a centre of medieval European trade and finance and one of the wealthiest cities of that era.[4] It is considered by many academics[5] to have been the birthplace of the Renaissance, becoming a major artistic, cultural, commercial, political, economic and financial center.[6] During this time, Florence rose to a position of enormous influence in Italy, Europe, and beyond.[7] Its turbulent political history includes periods of rule by the powerful Medici family and numerous religious and republican revolutions.[8] From 1865 to 1871 the city served as the capital of the Kingdom of Italy (established in 1861).",
     population: "378.239",
   },
   {
@@ -85,7 +85,7 @@ const city = [
     image: "Tropea.jpg",
     name: "Tropea",
     description:
-      "Tropea (Italian: [troˈpɛːa]; Calabrian: Trupìa; Latin: Tropaea; is a municipality in the province of Vibo Valentia, in Calabria, Italy. Tropea is a seaside resort with sandy beaches, located on the Gulf of Saint Euphemia, part of the Tyrrhenian Sea, on Italy's west coast and was named “Most beautiful village in Italy” for 2021.",
+      "Tropea is a municipality in the province of Vibo Valentia, in Calabria, Italy. Tropea is a seaside resort with sandy beaches, located on the Gulf of Saint Euphemia, part of the Tyrrhenian Sea, on Italy's west coast and was named “Most beautiful village in Italy” for 2021.",
     population: "6.914",
   },
   {
@@ -93,7 +93,7 @@ const city = [
     image: "Venecia.jpg",
     name: "Venecia",
     description:
-      "Venice (/ˈvɛnɪs/ VEH-niss; Italian: Venezia is a city in northeastern Italy and the capital of the Veneto region. It is built on a group of 118 small islands[2] that are separated by canals and linked by over 400 bridges. The islands are in the shallow Venetian Lagoon, an enclosed bay lying between the mouths of the Po and the Piave rivers (more exactly between the Brenta and the Sile). In 2020, 258,685 people resided in the Comune di Venezia, of whom around 55,000 live in the historical city of Venice (centro storico). Together with Padua and Treviso, the city is included in the Padua-Treviso-Venice Metropolitan Area (PATREVE), which is considered a statistical metropolitan area, with a total population of 2.6 million.",
+      "Venezia is a city in northeastern Italy and the capital of the Veneto region. It is built on a group of 118 small islands[2] that are separated by canals and linked by over 400 bridges. The islands are in the shallow Venetian Lagoon, an enclosed bay lying between the mouths of the Po and the Piave rivers (more exactly between the Brenta and the Sile). In 2020, 258,685 people resided in the Comune di Venezia, of whom around 55,000 live in the historical city of Venice (centro storico). Together with Padua and Treviso, the city is included in the Padua-Treviso-Venice Metropolitan Area (PATREVE), which is considered a statistical metropolitan area, with a total population of 2.6 million.",
     population: "258.685",
   },
 ];
