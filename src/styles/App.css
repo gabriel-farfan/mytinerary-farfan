@@ -1,0 +1,549 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap");
+@import url("//db.onlinewebfonts.com/c/07bc241768c969f6b6a27a7bf0dfb490?family=TT+Norms+Regular");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+
+/* ------------- NAVBAR ------------ */
+
+.navbar {
+  width: 100%;
+  height: 6rem;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  border-bottom: white 300px;
+}
+
+.navbar .leftSide {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 150px;
+}
+
+.navbar .leftSide img {
+  height: 100%;
+  width: auto;
+  background-color: aliceblue;
+}
+
+.navbar .rightSide {
+  flex: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 2rem;
+}
+
+.navbar a {
+  color: black;
+  text-decoration: none;
+  margin: 20px;
+}
+
+.navbar .rightSide button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+.navbar .rightSide img {
+  font-size: 30px;
+}
+
+.logousr {
+  width: 8%;
+}
+
+.navbar #open {
+  padding-left: 0px;
+}
+.navbar #open img {
+  display: none;
+}
+
+.navbar #close img {
+  display: inherit;
+}
+
+.navbar #open .hiddenLinks {
+  display: inherit;
+  margin-left: 30px;
+}
+
+.navbar #close .hiddenLinks {
+  display: none;
+}
+
+.navbar #open a {
+  width: 70px;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 900px) {
+  .navbar .rightSide a {
+    width: 70px;
+  }
+  .navbar .leftSide {
+    padding-left: 50px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar .rightSide a {
+    display: none;
+  }
+
+  .navbar .rightSide {
+    justify-content: flex-end;
+    padding-right: 50px;
+  }
+
+  .navbar .rightSide button {
+    display: inherit;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .navbar .rightSide button {
+    display: none;
+  }
+
+  .hiddenLinks {
+    display: none;
+  }
+}
+
+/* ------------- FOOTER ------------ */
+
+.footer {
+  width: 100%;
+  height: 200px;
+  background-color: #121619;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.socialMedia svg {
+  color: white;
+  margin: 20px;
+  font-size: 70px;
+  cursor: pointer;
+}
+
+.footer p {
+  color: white;
+}
+
+@media only screen and (max-width: 650px) {
+  .socialMedia svg {
+    color: white;
+    margin: 20px;
+    font-size: 50px;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .socialMedia svg {
+    color: white;
+    margin: 20px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
+
+/* ------------- HOME ------------ */
+
+.home-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.home-background {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../img/colosseo02.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 70vh;
+}
+
+.headerContainer {
+  margin-left: 0px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.678);
+  /* background-color: #121619; */
+  color: white;
+}
+
+.headerContainer h1 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 70px;
+  text-align: center;
+  /* height: auto; */
+  margin-bottom: 0.1rem;
+  font-weight: 50;
+  color: black;
+  font-family: "TT Norms Regular", sans-serif;
+}
+
+.headerContainer p {
+  padding: 0;
+  font-size: 30px;
+  width: 70%;
+  text-align: center;
+  font-weight: lighter;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+
+.headerContainer button {
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  background-color: #121619;
+  height: 50px;
+  width: 180px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.headerContainer button:hover {
+  background-color: #07090a;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+/* .cities-text {
+  margin-top: 5rem;
+  margin-bottom: -6rem;
+} */
+
+.cities-text h3 {
+  font-size: xx-large;
+  color: white;
+  color: black;
+}
+
+/* ------------- CITIES ------------ */
+
+.cities-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.citiesTop {
+  background-image: url(../img/toscana.jpg);
+  width: 100%;
+  height: 20rem;  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.citiesBottom {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.citiesBottom p {
+  text-align: center;
+  font-size: xx-large;
+  text-decoration: underline;
+}
+
+.cities .citiesBottom h1 {
+  font-weight: 400;
+  font-size: 70px;
+  color: black;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-40px);
+}
+
+
+.cardGeneral {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.MuiPaper-root {
+  margin: 2%;
+}
+
+
+/* ------------- CARROUSEL ------------ */
+
+.sliderContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  height: auto !important;
+  width: 100%;
+  /* background-color: blue; */
+  /* margin-top: 1rem; */
+  padding-top: 2rem;
+  /* margin-bottom: 5rem; */
+}
+
+.slick-slider {
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto !important;
+  /* background-color: green; */
+  margin-bottom: 4rem;
+}
+
+.slick-list {
+  width: 90%;
+  /* background-color: orange; */
+  margin-bottom: 3rem !important;
+}
+
+.slick-track {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-content: center !important;
+}
+
+.slick-prev {
+  display: flex !important;
+  flex-direction: row !important;
+  /* padding-left: 3% !important; */
+  margin-left: 3%;
+  width: auto;
+
+}
+
+.slick-next {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  margin-right: 4%;
+  width: auto;
+}
+
+.slick-next::before,
+.slick-prev::before {
+  color: red !important;
+  font-size: 30px !important;
+}
+
+.cardSlide {
+  display: flex !important;
+  flex-direction: column !important;
+  align-content: center !important;
+  height: auto !important;
+}
+
+.cardSlide img {
+  margin: auto;
+  margin-top: 0;
+  width: 90%;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cardSlide h3 {
+  text-align: center;
+}
+
+.slick-slider .slick-dots {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+
+  justify-content: center !important;
+  /* margin-top: 2rem; */
+  height: 3rem !important;
+  /* background-color: aqua; */
+}
+
+.slick-dots li button::before {
+  color: red !important;
+  font-size: x-large !important;
+}
+
+/* @media only screen and (max-width: 350px) {
+  .sliderContainer {
+    height: 30rem;
+    margin-top: 2rem;
+  }
+
+  .cardSlide {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: auto;
+    margin-right: 2rem;
+    background-color: rgb(175, 175, 175);
+  }
+
+  .slick-track {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+} */
+
+/* ------------- MEDIA QUERIES ------------ */
+
+@media only screen and (max-width: 950px) {
+  .cities-text {
+    margin-top: 1rem;
+  }
+
+  .cities-text h3 {
+    font-size: xx-large;
+    color: white;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .home {
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .headerContainer h1,
+  .headerContainer p {
+  } */
+
+  .headerContainer {
+    margin-left: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #121619;
+    color: white;
+  }
+
+  .headerContainer h1 {
+    text-align: center;
+    font-size: 30px;
+    height: 30px;
+    margin: 4%;
+    color: white;
+  }
+
+  .headerContainer p {
+    font-size: 20px;
+    color: white;
+    margin-top: 15%;
+    text-align: center;
+  }
+
+  .headerContainer button {
+    background-color: white;
+    color: #121619;
+    margin-bottom: 30px;
+  }
+
+  .headerContainer button:hover {
+    background-color: rgb(225, 225, 225);
+    color: #121619;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .home {
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .headerContainer h1,
+  .headerContainer p {
+  } */
+
+  .headerContainer {
+    margin-left: 0px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #121619;
+    color: white;
+  }
+
+  .headerContainer h1 {
+    font-size: 20px;
+    height: 30px;
+    color: white;
+  }
+
+  .headerContainer p {
+    font-size: 14px;
+    color: white;
+  }
+
+  .headerContainer button {
+    background-color: white;
+    color: #121619;
+    margin-bottom: 30px;
+  }
+
+  .headerContainer button:hover {
+    background-color: rgb(225, 225, 225);
+    color: #121619;
+  }
+}

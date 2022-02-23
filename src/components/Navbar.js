@@ -3,20 +3,8 @@ import ReorderIcon from "@material-ui/icons/Reorder";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo.png";
 import LogoUsr from "../img/logousr.svg";
-import "../styles/Navbar.css";
-// import * as React from 'react';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import AccountCircle from '@mui/icons-material/AccountCircle';
-// import Switch from '@mui/material/Switch';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import FormGroup from '@mui/material/FormGroup';
-// import MenuItem from '@mui/material/MenuItem';
-// import Menu from '@mui/material/Menu';
+import "../styles/App.css";
+
 
 function Navbar() {
   const [openLinks, setOpenLinks] = useState(false);
@@ -36,7 +24,7 @@ function Navbar() {
       </div>
       <div className="rightSide">
         <Link to="/"> Home </Link>
-        <Link to="/about"> Cities </Link>
+        <Link to="/Cities"> Cities </Link>
         <img className="logousr" src={LogoUsr} />
         <button onClick={toggleNavbar}>
           <ReorderIcon />

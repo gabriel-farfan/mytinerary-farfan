@@ -1,14 +1,14 @@
 import React from "react";
-import "./styles/Cities.css";
-import Footer from "./components/Footer";
+import "./styles/App.css";
+import StaticCard from "./components/StaticCard"
 
 
-
-function Mycities() {
+export default function Mycities() {
   return (
     <div className="cities-main">
-      <Footer />
-      <div className="citiesTop"></div>
+      <div className="citiesTop">
+
+      </div>
       <div className="citiesBottom">
         <h1> My Cities</h1>
         <p>Page Under Construction</p>
@@ -16,8 +16,9 @@ function Mycities() {
           <a href="./Home.js">Come back to Home Page</a>
         </p>
       </div>
+      <StaticCard />
     </div>
   );
 }
 
-export default Mycities;
+

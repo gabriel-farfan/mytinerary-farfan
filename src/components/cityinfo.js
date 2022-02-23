@@ -91,7 +91,7 @@ const city = [
   {
     id: 7,
     image: "Venecia.jpg",
-    name: "Venecia",
+    name: "Venezia",
     description:
       "Venezia is a city in northeastern Italy and the capital of the Veneto region. It is built on a group of 118 small islands[2] that are separated by canals and linked by over 400 bridges. The islands are in the shallow Venetian Lagoon, an enclosed bay lying between the mouths of the Po and the Piave rivers (more exactly between the Brenta and the Sile). In 2020, 258,685 people resided in the Comune di Venezia, of whom around 55,000 live in the historical city of Venice (centro storico). Together with Padua and Treviso, the city is included in the Padua-Treviso-Venice Metropolitan Area (PATREVE), which is considered a statistical metropolitan area, with a total population of 2.6 million.",
     population: "258.685",

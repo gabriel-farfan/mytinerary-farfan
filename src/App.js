@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
 import Home from "./Home";
+import Cities from "./Cities";
 import Navbar from "./components/Navbar";
-import Calesita from "./components/Calesita";
 import Footer from "./components/Footer";
-// import { Slider } from "@material-ui/core";
-// import { Slider } from "./components/Slider";
-
+import DinamicCard from "./components/DinamicCard"
+ 
 const App = () => {
   return (
     <BrowserRouter>
@@ -15,8 +14,10 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/StaticCard" element={<DinamicCard />} />
+
         </Routes>
-        <Calesita />
         <Footer />
       </div>
     </BrowserRouter>
