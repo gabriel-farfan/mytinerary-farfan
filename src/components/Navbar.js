@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import { Link } from "react-router-dom";
-import Logo from "../img/logo.png";
+import Logo from "../img/Air-Plane-icon.png";
 import LogoUsr from "../img/logousr.svg";
 import "../styles/App.css";
 
