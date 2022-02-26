@@ -1,6 +1,12 @@
 const city = [
   {
-    id: 1,
+    image: "Ancona.jpg",
+    name: "Ancona",
+    description:
+      "Ancona is a city and a seaport in the Marche region in central Italy. Ancona is the capital of the province of Ancona and of the region. The city is located 280 km (170 mi) northeast of Rome, on the Adriatic Sea, between the slopes of the two extremities of the promontory of Monte Conero, Monte Astagno and Monte Guasco. Ancona is one of the main ports on the Adriatic Sea, especially for passenger traffic, and is the main economic and demographic centre of the region.",
+    population: "101.300",
+  },
+  {
     image: "Bologna.jpg",
     name: "Bologna",
     description:
@@ -8,16 +14,20 @@ const city = [
     population: "394.369",
   },
   {
-    id: 2,
+    image: "Cagliari.jpg",
+    name: "Cagliari",
+    description:
+      "Cagliari is an Italian municipality and the capital of the island of Sardinia, an autonomous region of Italy. Cagliari's Sardinian name Casteddu means castle. An ancient city with a long history, Cagliari has seen the rule of several civilisations. Under the buildings of the modern city there is a continuous stratification attesting to human settlement over the course of some five thousand years, from the Neolithic to today. Historical sites include the prehistoric Domus de Janas, very damaged by cave activity, a large Carthaginian era necropolis, a Roman era amphitheatre and a Byzantine basilica.",
+    population: "154.460",
+  },
+  {
     image: "Capri.jpg",
     name: "Capri",
     description:
       "Capri is an island located in the Tyrrhenian Sea off the Sorrento Peninsula, on the south side of the Gulf of Naples in the Campania region of Italy. The main town Capri that is located on the island shares the name. It has been a resort since the time of the Roman Republic.",
     population: "13.839",
   },
-
   {
-    id: 3,
     image: "Firenze.jpg",
     name: "Firenze",
     description:
@@ -25,7 +35,6 @@ const city = [
     population: "378.239",
   },
   {
-    id: 4,
     image: "Milano.jpg",
     name: "Milano",
     description:
@@ -33,7 +42,6 @@ const city = [
     population: "1.396.522",
   },
   {
-    id: 5,
     image: "Napoles.jpg",
     name: "Napoles",
     description:
@@ -41,7 +49,13 @@ const city = [
     population: "959.188",
   },
   {
-    id: 6,
+    image: "Parma.jpg",
+    name: "Parma",
+    description:
+      "Parma is a city in the northern Italian region of Emilia-Romagna famous for its architecture, music, art, prosciutto (ham), cheese and surrounding countryside. Parma is the second most populous city in Emilia-Romagna after Bologna, the region's capital. The city is home to the University of Parma, one of the oldest universities in the world. Parma is divided into two parts by the stream of the same name. The district on the far side of the river is Oltretorrente. Parma's Etruscan name was adapted by Romans to describe the round shield called Parma.",
+    population: "198.292",
+  },
+  {
     image: "Pisa.jpg",
     name: "Pisa",
     description:
@@ -49,7 +63,6 @@ const city = [
     population: "86.052",
   },
   {
-    id: 7,
     image: "Positano.jpg",
     name: "Positano",
     description:
@@ -57,7 +70,6 @@ const city = [
     population: "3.862",
   },
   {
-    id: 7,
     image: "Roma.jpg",
     name: "Roma",
     description:
@@ -65,7 +77,6 @@ const city = [
     population: "",
   },
   {
-    id: 7,
     image: "Siracusa.jpg",
     name: "Siracusa",
     description:
@@ -73,7 +84,6 @@ const city = [
     population: "124.391",
   },
   {
-    id: 7,
     image: "Torino.jpg",
     name: "Torino",
     description:
@@ -81,7 +91,6 @@ const city = [
     population: "911.823",
   },
   {
-    id: 7,
     image: "Tropea.jpg",
     name: "Tropea",
     description:
@@ -89,7 +98,6 @@ const city = [
     population: "6.914",
   },
   {
-    id: 7,
     image: "Venecia.jpg",
     name: "Venezia",
     description:

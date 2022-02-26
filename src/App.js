@@ -9,6 +9,13 @@ import DinamicCard from "./components/DinamicCard"
  
 const App = () => {
   return (
+
+    // useEffect ( () => {
+    //   axios.get(`http://localhost:4000/api/allcities`)
+    //   then(response => console.log(response))
+      
+    // },[])
+
     <BrowserRouter>
       <div className="App">
         <Navbar />
