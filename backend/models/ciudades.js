@@ -6,6 +6,6 @@ const ciudadesSchema = new mongoose.Schema({
   descripcion: { type: String, required: true },
 });
 
-const Ciudades = mongoose.model("ciudades", ciudadesSchema);
+const Ciudades = mongoose.model("cities", ciudadesSchema); // "cities " es la coleccion dentro de la DB
 
 module.exports = Ciudades;

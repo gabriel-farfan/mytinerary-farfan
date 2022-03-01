@@ -1,21 +1,19 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import axios from 'axios'
+
 import "./styles/App.css";
 import Home from "./Home";
 import Cities from "./Cities";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import DinamicCard from "./components/DinamicCard"
+import CardPrueba from "./components/CardPrueba"
+
  
 const App = () => {
+  
   return (
-
-    // useEffect ( () => {
-    //   axios.get(`http://localhost:4000/api/allcities`)
-    //   then(response => console.log(response))
-      
-    // },[])
-
     <BrowserRouter>
       <div className="App">
         <Navbar />
@@ -23,6 +21,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/StaticCard" element={<DinamicCard />} />
+          <Route path="/CardPrueba" element={<CardPrueba />} />
 
         </Routes>
         <Footer />

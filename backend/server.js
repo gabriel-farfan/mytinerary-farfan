@@ -11,7 +11,7 @@ const app = express();
 // Middlewares
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json()) //para que me de respuestas en formato JSON
 app.use('/api', Router)
 
 app.listen(PORT, () => console.log("Server ready on PORT" + PORT));
