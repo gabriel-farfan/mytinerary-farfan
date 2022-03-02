@@ -15,7 +15,9 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="leftSide" id={openLinks ? "open" : "close"}>
-        <img src={Logo} />
+        <a href="/">
+          <img className="logo-navbar" src={Logo} />
+        </a>
         <p style={{ fontWeight: "bold" }}>MyTinerary</p>
         <div className="hiddenLinks">
           <Link to="/"> Home </Link>

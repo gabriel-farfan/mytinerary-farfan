@@ -5,6 +5,7 @@ import "./styles/App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MultipleItems from "./components/Slider";
+// import SliderVertical from "./components/Vertical";
 
 
 function Home() {
@@ -26,6 +27,7 @@ function Home() {
         <h3>Popular MYtineraries</h3>
       </div>
       <MultipleItems />
+      {/* <SliderVertical /> */}
     </div>
   );
 }

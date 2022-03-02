@@ -36,7 +36,13 @@ body {
   padding-left: 150px;
 }
 
-.navbar .leftSide img {
+.navbar .leftSide a {
+  height: 100%;
+  width: auto;
+  background-color: aliceblue;
+}
+
+.logo-navbar {
   height: 100%;
   width: auto;
   background-color: aliceblue;
@@ -310,22 +316,50 @@ body {
 .cardGeneral {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.input-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.containerInput {
+  align-self: center;
+  margin: 2%;
 }
 
 .MuiPaper-root {
   margin: 2%;
+  width: 30rem;
+  border: solid 1px rgb(108, 156, 165);
+}
+
+.MuiCardContent-root {
+  width: 10rem;
 }
 
 .MuiCardContent-root > p {
   color: #07090a;
 }
 
+.MuiCardActions-root {
+  background-color:rgb(216, 216, 216);
+}
+
+.MuiButton-text {
+  color: rgb(20, 57, 180) !important;
+  font-weight: 800 !important;
+
+}
+
 
 /* ------------- CARROUSEL ------------ */
 
-.sliderContainer {
+.ContainerHorizontal {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
@@ -417,7 +451,7 @@ body {
 
 .slick-dots li button::before {
   color: red !important;
-  font-size: x-large !important;
+  font-size:medium !important;
 }
 
 /* @media only screen and (max-width: 350px) {
@@ -445,18 +479,57 @@ body {
 /* ------------- MEDIA QUERIES ------------ */
 
 @media only screen and (max-width: 950px) {
+  /* .ContainerVertical{
+    visibility: hidden;
+  } */
+
+  .headerContainer h1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 40px;
+    text-align: center;
+    /* height: auto; */
+    margin-bottom: 0.1rem;
+    font-weight: 50;
+    color: black;
+    font-family: "TT Norms Regular", sans-serif;
+  }
+  
+  .headerContainer p {
+    padding: 0;
+    font-size: 20px;
+    width: 70%;
+    text-align: center;
+    font-weight: lighter;
+    color: black;
+    font-family: "Roboto", sans-serif;
+  }
+
   .cities-text {
     margin-top: 1rem;
   }
 
   .cities-text h3 {
-    font-size: xx-large;
-    color: white;
+    font-size: x-large;
+    color: rgb(0, 0, 0);
     text-align: center;
+  }
+
+  .slick-prev {
+    margin-left: 4%;
+  }
+  
+  .slick-next {
+    margin-right: 5%;
   }
 }
 
 @media only screen and (max-width: 650px) {
+  /* .ContainerHorizontal{
+    visibility: hidden;
+  } */
+
   .home {
     justify-content: center;
     align-items: center;
@@ -504,9 +577,66 @@ body {
     background-color: rgb(225, 225, 225);
     color: #121619;
   }
+
+  .slick-prev {
+    margin-left: 5%;
+  }
+  
+  .slick-next {
+    margin-right: 6%;
+  }
 }
 
+@media only screen and (max-width: 550px) {
+  .logousr {
+    visibility: hidden;
+  }
+
+  .navbar .leftSide {
+    margin-left: 1rem;
+  }
+
+  .slick-prev {
+    margin-left: 7%;
+  }
+  
+  .slick-next {
+    margin-right: 8%;
+  }
+}
+
+
 @media only screen and (max-width: 350px) {
+  /* .ContainerHorizontal {
+    visibility: hidden;
+  } */
+
+  .navbar .leftSide {
+    margin-left: 1rem;
+  }
+
+  .navbar .rightSide {
+  
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: end;
+    margin-right: 2rem;
+    margin-right: 0;
+  }
+
+  .navbar .rightSide button {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* justify-content: end; */
+  }
+
+  .logousr {
+    visibility: hidden;
+  }
+
   .home {
     justify-content: center;
     align-items: center;

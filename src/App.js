@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import DinamicCard from "./components/DinamicCard"
 import CardPrueba from "./components/CardPrueba"
+import CityDetailed from './components/DetailCard'
 
  
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/cities" element={<Cities />} />
           <Route path="/StaticCard" element={<DinamicCard />} />
           <Route path="/CardPrueba" element={<CardPrueba />} />
+          <Route path="/DetailCard/:id" element={<CityDetailed />} />
 
         </Routes>
         <Footer />

@@ -5,16 +5,43 @@ import "slick-carousel/slick/slick-theme.css";
 import "../styles/App.css";
 import axios from "axios";
 
-// export default class MultipleItems extends Component {
+
 export default function MultipleItems() {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: 4,
     autoplay: false,
     speed: 1000,
-    cssEase: "linear",
+    // cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      },
+    ]
   };
 
   const [cityData, setCityData] = useState([]);
@@ -22,15 +49,15 @@ export default function MultipleItems() {
   useEffect(() => {
     axios
       .get(`http://localhost:4000/api/allcities`)
-      .then((response) => setCityData(response.data.response.ciudades));
+      .then((response) => setCityData(response.data.response.ciudades.slice(0, 12)));
     // console.log(cityData)
   }, []);
 
   return (
     <>
-      <div className="sliderContainer">
+      <div className="ContainerHorizontal">
         <Slider {...settings}>
-          {cityData.map((city) => (
+          {cityData.map(city => (
             <div className="cardSlide">
               <img src={process.env.PUBLIC_URL + `./images/${city.image}`} alt={city.name} />
               <h3>{city.name}</h3>
