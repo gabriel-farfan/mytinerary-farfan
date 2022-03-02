@@ -1,6 +1,6 @@
 // import * as React from 'react';
 import React, { useEffect, useState } from "react";
-import { Link as LinkRouter } from 'react-router-dom'
+import { Link as LinkRouter } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -87,11 +87,16 @@ export default function DinamicCard() {
               </Typography> */}
             </CardContent>
           </CardActionArea>
-          <CardActions>
+          {/* <CardActions>
             <LinkRouter to={`/DetailCard/${city.id}`}>
               <Button size="medium" color="primary">
                 View More!
               </Button>
+            </LinkRouter>
+          </CardActions> */}
+          <CardActions>
+            <LinkRouter to={`/CardDetails/${city._id}`}>
+              <Button size="small">View More!</Button>
             </LinkRouter>
           </CardActions>
         </Card>

@@ -1,35 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link as LinkRouter } from 'react-router-dom'
+// import { Link as LinkRouter } from "react-router-dom";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+// import axios from "axios";
 import "../styles/App.css";
+// import "../styles/App.css";
 // import DinamicCard from "./DinamicCard"
-import { getAllCities } from '../apiCalls'
+import { getAllCities } from "../apiCalls";
 
-export default function CityDetailed() {
+
+export default function Details() {
+  const [detailData, setDetailData] = useState([]);
   const { id } = useParams();
-  const [detailCity, setDetailCity] = React.useState([]);
-  // let card = "";
-  React.useEffect(() => {
-    getAllCities()
-      .then(response => {
-      setDetailCity(response.data.response.ciudades).filter(city => city.id == id);
-      console.log(detailCity);
+
+  useEffect(() => {
+    getAllCities().then((reply) => {
+      console.log(reply.data.response.ciudades.filter((city) => city._id == id));
+      setDetailData(reply.data.response.ciudades.filter((city) => city._id == id));
     });
   }, []);
 
-  
 
   return (
-    <div>
+    <div className="card-detail-main">
+      <div className="titleDetails">{detailData.map((city) => city.name)}
+      </div>
       <h1>Page Under Construction</h1>
-      <h2>Please Come Later</h2>
-      <a href="/">Return to Main Page</a>
-      {/* <Card sx={{ maxWidth: 345 }}>
+        <h2>Please Come Later</h2>
+        <a href="/">Return to Main Page</a>
+
+      <div className="details-container">
+        {detailData.map((city) => (
+          <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -47,8 +53,12 @@ export default function CityDetailed() {
             </CardContent>
           </CardActionArea>
           <CardActions>
+
           </CardActions>
-        </Card> */}
+          
+        </Card>
+        ))}
       </div>
+    </div>
   );
 }

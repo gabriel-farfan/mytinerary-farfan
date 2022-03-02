@@ -353,7 +353,6 @@ body {
 .MuiButton-text {
   color: rgb(20, 57, 180) !important;
   font-weight: 800 !important;
-
 }
 
 
@@ -475,6 +474,26 @@ body {
     width: 100%;
   }
 } */
+
+
+/* ------------- CARD DETAILS ------------ */
+
+.card-detail-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-container .MuiCardContent-root {
+  width: 90%;
+}
+
+.details-container > img {
+  margin: auto;
+  width: 100%;
+}
+
+
 
 /* ------------- MEDIA QUERIES ------------ */
 

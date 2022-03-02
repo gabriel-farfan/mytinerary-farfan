@@ -50,7 +50,7 @@ export default function MultipleItems() {
     axios
       .get(`http://localhost:4000/api/allcities`)
       .then((response) => setCityData(response.data.response.ciudades.slice(0, 12)));
-    // console.log(cityData)
+    console.log(cityData)
   }, []);
 
   return (
