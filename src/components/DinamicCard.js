@@ -8,18 +8,22 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import axios from "axios";
 import Alert from "./Alert";
+import {connect} from 'react-redux'
+import citiesActions from '../redux/actions/citiesActions'
 
-export default function DinamicCard() {
+
+function DinamicCard(props) {
   const [cityData, setCityData] = useState([]);
   const [busqueda, setBusqueda] = useState("");
   const [Resultado, setResultado] = useState([]);
   const [AlertMessage, setAlert] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/allcities`).then((response) => {
-      setCityData(response.data.response.ciudades);
-      setResultado(response.data.response.ciudades);
-    });
+    props.getCities()
+    // axios.get(`http://localhost:4000/api/allcities`).then((response) => {
+    //   setCityData(response.data.response.ciudades);
+    //   setResultado(response.data.response.ciudades);
+    // });
   }, []);
 
   const handleChange = (e) => {
@@ -28,26 +32,35 @@ export default function DinamicCard() {
     filtrar(e.target.value);
   };
 
-  const filtrar = (terminoBusqueda) => {
+  const filtrar = (e) => {
+    let busqueda = e.target.value
+    setBusqueda(e.target.value);
+    props.filterCities (props.searchedCities, busqueda.trim())
     console.log(Resultado);
-    var resultadosBusqueda = [];
-    resultadosBusqueda.push(
-      ...cityData.filter((elemento) =>
-        elemento.name.toLowerCase().startsWith(terminoBusqueda.toLowerCase())
-      )
-    );
+    // var resultadosBusqueda = [];
+    // resultadosBusqueda.push(
+    //   ...cityData.filter((elemento) =>
+    //     elemento.name.toLowerCase().startsWith(terminoBusqueda.toLowerCase())
+    //   )
+    // );
 
-    if (resultadosBusqueda.length > 0) {
-      setResultado(resultadosBusqueda);
+    if (props.allCities.length > 0) {
+      setResultado(props.allCities);
       setAlert(false);
-    } else if (resultadosBusqueda.length == 0 && terminoBusqueda != "") {
-      setResultado(resultadosBusqueda);
+    } else if (props.allCities.length == 0 && busqueda != "") {
+      setResultado(props.allCities);
       setAlert(true);
     } else {
       setResultado(cityData);
       setAlert(false);
     }
   };
+
+  if (!props.allCities) {
+    return (
+     <h1>esta cargando</h1> 
+    )
+  }
 
   return (
     // Search section
@@ -57,9 +70,9 @@ export default function DinamicCard() {
         <div className="containerInput">
           <input
             className="inputBuscar"
-            value={busqueda}
+            // value={busqueda}
             placeholder="Search Your City"
-            onChange={handleChange}
+            onKeyUp={filtrar}
           />
           <button className="btn btn-success"> ENTER </button>
         </div>
@@ -69,7 +82,7 @@ export default function DinamicCard() {
 
       <Alert StateAlert={AlertMessage} />
 
-      {Resultado.map((city) => (
+      {(props?.allCities).map((city) => (
         <Card sx={{ maxWidth: 345 }}>
           <CardActionArea>
             <CardMedia
@@ -105,37 +118,19 @@ export default function DinamicCard() {
   );
 }
 
-// export default function StaticCard() {
-//   return (
 
-//     <div className="cardGeneral">
-//         {cityinfo.map(city =>
-//           <Card sx={{ maxWidth: 345 }}>
-//           <CardActionArea>
-//             <CardMedia
-//               component="img"
-//               height="200"
-//               image={process.env.PUBLIC_URL + `./images/${city.image}`}
-//               alt=""
-//             />
-//             <CardContent>
-//               <Typography gutterBottom variant="h5" component="div">
-//                 <p>{city.name}</p>
-//               </Typography>
-//               <Typography variant="body2" color="text.secondary">
-//                 <p>{city.description}</p>
-//               </Typography>
-//             </CardContent>
-//           </CardActionArea>
-//           <CardActions>
-//             <Button size="small" color="primary">
-//               Share
-//             </Button>
-//           </CardActions>
-//         </Card>
-//         )}
+const mapStateToProps = (state ) => {
+  return {
+  allCities : state.citiesReducer.allCities,
+  searchedCities : state.citiesReducer.searchedCities,
+  auxiliar : state.citiesReducer.auxiliar
+  }
+}
 
-//       </div>
+const mapDispatchToProps = {
+  getCities : citiesActions.getCities,
+  filterCities : citiesActions.filterCities,
+  getOneCity: citiesActions.getOneCity,
+}
 
-//   );
-// }
+export default connect (mapStateToProps, mapDispatchToProps)(DinamicCard)

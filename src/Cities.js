@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import DinamicCard from "./components/DinamicCard";
 
+
 export default function Mycities() {
   return (
     <div className="cities-main">
@@ -12,6 +13,7 @@ export default function Mycities() {
         <p>Search your next destination:</p>
       </div>
       <DinamicCard />
+
     </div>
   );
 }

@@ -1,15 +1,17 @@
 // El controlador consulta al modelos de ciudades
 // cada propiedad del objeto es una funcion
 
-const Ciudades = require("../models/ciudades");
+const { TramRounded } = require("@mui/icons-material");
+const Ciudades = require("../models/City");
 
 const ciudadesController = {
+  
   obtenerCiudades: async (req, res) => {
     let ciudades;
     let error = null;
 
     try {
-      ciudades = await Ciudades.find(); // Respuesta psoitiva => devuelve lo que hay en ciudades
+      ciudades = await Ciudades.find(); // Respuesta positiva => devuelve lo que hay en ciudades
     } catch (err) {
       error = err;
       console.log(error);
@@ -34,13 +36,31 @@ const ciudadesController = {
 
     await Ciudades.findOneAndDelete({ _id: id });
   },
+  
   modificarCiudad: async (req, res) => {
     const id = req.params.id;
     const ciudad = req.body.dataInput;
-
     let ciudadb = await Ciudades.findOneAndUpdate({ _id: id }, ciudad);
     console.log(ciudadb);
   },
+  
+  getOneCity: async (req, res) => {
+    const id = req.params.id;
+    
+    let city
+    let error = null
+    try {
+      city = await Ciudades.findOne({ _id: id})
+    }
+    catch (err) {
+      error = err
+    }
+    res.json({
+      response: error?'error' : city,
+      success: error? false : true,
+      error : error
+    })
+  }
 };
 
 module.exports = ciudadesController;

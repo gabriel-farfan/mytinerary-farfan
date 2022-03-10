@@ -6,7 +6,7 @@ import "../styles/App.css";
 import axios from "axios";
 
 
-export default function MultipleItems() {
+export default function MultipleItems () {
   const settings = {
     dots: false,
     infinite: true,

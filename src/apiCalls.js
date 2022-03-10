@@ -8,6 +8,7 @@ export const getAllCities = async () => {
     throw error;
   }
 };
+
 export const cargarDatos = async (dataInput) => {
   console.log(dataInput);
   try {
@@ -42,3 +43,14 @@ export const modificarCiudad = async (id, dataInput) => {
     throw error;
   }
 };
+
+
+export const getAllItineraries = async () => {
+  try {
+    let data = await axios.get(`http://localhost:4000/api/itineraries`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
