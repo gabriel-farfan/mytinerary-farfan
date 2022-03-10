@@ -10,9 +10,9 @@ import MultipleItems from "./components/Slider";
 
 function Home() {
   return (
-    <div className="home-main-container">
-      <div className="home-background">
-        <div className="headerContainer">
+    <div className="home-main-container" >
+      <div className="home-background" >
+        <div className="headerContainer" >
           <h1> Welcome To MyTinerary </h1>
           <p>
             Find your perfect trip, designed by insiders who know and love
