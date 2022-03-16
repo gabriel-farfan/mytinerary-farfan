@@ -83,7 +83,7 @@ function DinamicCard(props) {
       <Alert StateAlert={AlertMessage} />
 
       {(props?.allCities).map((city) => (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} key={city._id} >
           <CardActionArea>
             <CardMedia
               component="img"

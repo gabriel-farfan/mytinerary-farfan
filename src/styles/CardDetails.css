@@ -19,6 +19,13 @@ body {
   /* background-image: ; */
 }
 
+.details-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100% !important;
+}
+
 .container {
   position: absolute;
   left: 50%;
@@ -42,6 +49,13 @@ body {
 .container h3 {
   font-weight: 600;
   font-size: 15px;
+}
+
+.details-container .css-1ri6ub7-MuiPaper-root-MuiCard-root {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  width: 100% !important;
 }
 
 .upper {
@@ -78,7 +92,3 @@ div.expand {
 }
 
 
-.details-container {
-  display: flex;
-  flex-direction: row;
-}

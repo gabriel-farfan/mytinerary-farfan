@@ -55,10 +55,10 @@ export default function MultipleItems () {
 
   return (
     <>
-      <div className="ContainerHorizontal">
-        <Slider {...settings}>
+      <div className="ContainerHorizontal" >
+        <Slider {...settings} >
           {cityData.map(city => (
-            <div className="cardSlide">
+            <div className="cardSlide" key={city._id}>
               <img src={process.env.PUBLIC_URL + `./images/${city.image}`} alt={city.name} />
               <h3>{city.name}</h3>
             </div>

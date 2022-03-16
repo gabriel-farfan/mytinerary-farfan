@@ -6,12 +6,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import "../styles/App.css";
+import "../styles/CardDetails.css"
 import { getAllCities } from "../apiCalls";
 import {connect} from 'react-redux'
-import citiesActions from '../redux/actions/citiesActions'
-import itinerariesActions from '../redux/actions/itinerariesActions'
-
-
 import { styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
 import Collapse from '@mui/material/Collapse';
@@ -22,6 +19,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import citiesActions from '../redux/actions/citiesActions'
+import itinerariesActions from '../redux/actions/itinerariesActions'
 
 
 
@@ -36,10 +35,6 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-
-
-
-
 function Details(props) {
   const { id  } = useParams();
   const [detailData, setDetailData] = useState(props.allCities.filter(city => city._id == id));
@@ -49,8 +44,6 @@ function Details(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-
 
   useEffect(() => {
     if (props.allCities < 1) {
@@ -68,13 +61,15 @@ function Details(props) {
   }
 
 
+  {/* CITY ------------------------------------ */}
+
   return (
     <div className="card-detail-main">
       <div className="titleDetails" >{detailData.map((city) => city.name)}</div>
       {/* {console.log(props)} */}
       <div className="details-container">
         {detailData.map ((city) => (
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345 }} >
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -103,12 +98,12 @@ function Details(props) {
 
 
 
-      <div className="details-container">
+      <div className="details-container-itinerary">
         {dataPrueba.length ? (
           dataPrueba.map((itinerary) => (
 
 
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 345 }} key={itinerary._id}>
               <CardHeader
                 avatar={
                   <Avatar >
@@ -168,9 +163,6 @@ function Details(props) {
                 </CardContent>
               </Collapse>
             </Card>
-
-
-
           ))
         ) : (
           <h1> There's no itineraries for this city yet. Come back soon! </h1>
