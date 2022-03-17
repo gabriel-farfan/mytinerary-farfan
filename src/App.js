@@ -1,8 +1,11 @@
 import React, {useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Container from './components/SignUp/container';
+import Snackbar from './components/Snackbar';
 // import axios from 'axios'
 import { connect } from "react-redux"
-// import {useEffect} from "react"
+import userActions from './redux/actions/userActions';
+
 
 
 import "./styles/App.css";

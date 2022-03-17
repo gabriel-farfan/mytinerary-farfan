@@ -7,7 +7,7 @@ const userActions = {
 
             const res = await axios.post('http://localhost:4000/api/auth/signUp', { userData })
             dispatch({type: 'message', payload: res.data});
-
+            console.log(res);
             // ACA SALE PARA "ROUTES"
             
         }

@@ -14,6 +14,10 @@ const validator = (req, res, next) => {
             'string.min':'El password debe contener minimo 8 caracteres y contener mayuscula, minuscula y numero',
             'string.pattern':"El password debe ser alphanumerico y contener un numero"
         }),
+        pais: joi.string().max(20).min(3).trim().required().messages({
+            'string.min':'El PAIS debe contener mas de 3 caracteres',
+            'string.max':"El PAIS debe contener como maximo 20 caracteres"
+        }),
         
         from:joi.string()
     })

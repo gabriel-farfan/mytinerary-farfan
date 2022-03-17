@@ -1,13 +1,14 @@
 const Router = require('express').Router();
+const validator = require('../config/validator')
 const ciudadesController = require('../controllers/ciudadesController')
 const itineraryController = require('../controllers/itineraryController')
 const usersControllers = require('../controllers/userControllers')
 // const activityController = require ('../controllers/activityController')
-
-
 const {obtenerCiudades, cargarCiudad, borrarCiudad, getOneCity} = ciudadesController // llama "obtener ciudades" desde el controlador mediante el require
 const {getAllItineraries, addNewItinerary, getItineraryId, deleteItinerary, editItinerary, getItinerariesPerCity} = itineraryController
-const {signUpUsers, signInUser, signOutUser}= usersControllers
+const {signUpUsers, signInUser, signOutUser, verifyEmail, verificarToken}= usersControllers
+const passport = require('../config/passport')
+
 
 Router.route('/allcities')
 .get(obtenerCiudades)
@@ -25,14 +26,22 @@ Router.route("/itineraries")
 Router.route("/itineraries/:id")
 .get(getItinerariesPerCity)
 
+//  ------ USERS ------
+
 Router.route('/auth/signUp')
-.post(signUpUsers)
+.post(validator, signUpUsers)
 
 Router.route('/auth/signIn')
 .post(signInUser)
 
 Router.route('/auth/signOut')
 .post(signOutUser)
+
+Router.route('/verify/:uniqueString') //RECIBE EL LINK DE USUARIO
+.get(verifyEmail) //LLAMA A FUNCION DE VERIFICACIION
+
+Router.route('/auth/signInToken')
+.get(passport.authenticate('jwt',{ session:false }), verificarToken)
 
 
 // Router.route("/itinerary/:id")

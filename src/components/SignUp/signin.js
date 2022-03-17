@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import userActions from '../../redux/actions/userActions';
 import { Link as LinkRouter } from 'react-router-dom';
+import FacebookSignIn from './FacebookSignIn';
 
 function SignIn(props) {
 
@@ -11,13 +12,26 @@ function SignIn(props) {
 		const logedUser = {
 			email: event.target[0].value,
 			password: event.target[1].value,
-			from: "form-Signin"
+			from: "form-Signup"
 		}
 		props.signInUser(logedUser)
 	}
 
+	console.log(props.user);
+	
 	return (
+<article className="card-body mx-auto" style={{ maxWidth: 400 }}>
 
+<h4 className="card-title mt-3 text-center">User Account</h4>
+
+
+<p className="divider-text">
+	<span className="bg-light"> SignIn</span>
+</p>
+<FacebookSignIn />
+<p className="divider-text">
+	<span className="bg-light"> Or</span>
+</p>
 		<form onSubmit={handleSubmit}>
 			<div className="form-group input-group">
 				<div className="input-group-prepend">
@@ -37,7 +51,7 @@ function SignIn(props) {
 			</div>
 			<div className="text-center">Dont Have an account? <LinkRouter to="/signup">SignUp</LinkRouter> </div>
 		</form>
-
+</article>
 
 	)
 
@@ -48,6 +62,12 @@ const mapDispatchToProps = {
 
 }
 
+const mapStateToProps = (state) => {
+	return {
+		user: state.userReducer.user
+	}
+}
+	
 
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

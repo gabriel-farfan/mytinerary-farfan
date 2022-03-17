@@ -27,7 +27,9 @@ function Navbar() {
       <div className="rightSide">
         <Link to="/"> Home </Link>
         <Link to="/Cities"> Cities </Link>
-        <img className="logousr" src={LogoUsr} />
+        <Link to="/signup"> 
+          <img className="logousr" src={LogoUsr}  />
+        </Link>
         <button onClick={toggleNavbar}>
           <ReorderIcon />
         </button>
