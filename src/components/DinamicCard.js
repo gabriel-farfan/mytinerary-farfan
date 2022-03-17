@@ -84,6 +84,7 @@ function DinamicCard(props) {
 
       {(props?.allCities).map((city) => (
         <Card sx={{ maxWidth: 345 }} key={city._id} >
+          <LinkRouter to={`/CardDetails/${city._id}`}>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -112,6 +113,7 @@ function DinamicCard(props) {
               <Button size="small">View More!</Button>
             </LinkRouter>
           </CardActions>
+          </LinkRouter>
         </Card>
       ))}
     </div>

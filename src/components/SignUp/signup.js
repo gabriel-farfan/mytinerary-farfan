@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 import { Link as LinkRouter } from "react-router-dom";
-import "../../styles/form.css";
+import '../../styles/App.css'
+import './styleSign.css'
 
 import FacebookSignUp from './FacebookSignUp';
 // import Select from 'react-select'
@@ -35,13 +36,14 @@ function SignUp(props) {
     }
     props.signUpUser(userData)
   }
+  // alert(props.message.message)
 
   return (
     <>
+      <article className="card-body">
+        <div className="form-container-main">
 
-      <article className="card-body mx-auto" style={{ maxWidth: 400 }}>
-
-        <div class="styled-select">
+        <div className="styled-select">
           <select class="form-select form-select-sm" aria-label=".form-select-sm example" onChange={selected}>
 
             {paises.map(pais =>
@@ -106,13 +108,14 @@ function SignUp(props) {
                 Create Account
               </button>
               <div className="text-center">
-                Have an account? <LinkRouter to="/signin">SignIn</LinkRouter>{" "}
+                Have an account? <LinkRouter to="/signin" className="signin-btn">SignIn</LinkRouter>{" "}
               </div>
             </form>
 
 
 
-          </> : <h1>Selecciona tu pais para continuar signUp</h1>}
+          </> : <h1>Please...Select your country to proceed.</h1>}
+          </div>
       </article>
     </>
 

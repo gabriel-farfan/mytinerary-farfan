@@ -1,73 +1,85 @@
+import React from "react";
+import { connect } from "react-redux";
+import userActions from "../../redux/actions/userActions";
+import { Link as LinkRouter } from "react-router-dom";
+import FacebookSignIn from "./FacebookSignIn";
+import '../../styles/App.css'
 import './styleSign.css'
-import React from 'react'
-import { connect } from 'react-redux';
-import userActions from '../../redux/actions/userActions';
-import { Link as LinkRouter } from 'react-router-dom';
-import FacebookSignIn from './FacebookSignIn';
 
 function SignIn(props) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const logedUser = {
+      email: event.target[0].value,
+      password: event.target[1].value,
+      from: "form-Signup",
+    };
+    props.signInUser(logedUser);
+  };
 
-	const handleSubmit = (event) => {
-		event.preventDefault()
-		const logedUser = {
-			email: event.target[0].value,
-			password: event.target[1].value,
-			from: "form-Signup"
-		}
-		props.signInUser(logedUser)
-	}
+  console.log(props.user);
 
-	console.log(props.user);
-	
-	return (
-<article className="card-body mx-auto" style={{ maxWidth: 400 }}>
+  return (
+    <article className="card-body">
+      <div className="form-container-main">
+        <h4 className="card-title mt-3 text-center">User Account</h4>
 
-<h4 className="card-title mt-3 text-center">User Account</h4>
+        <p className="divider-text">
+          <span className="bg-light"> SignIn</span>
+        </p>
+        <FacebookSignIn />
+        <p className="divider-text">
+          <span className="bg-light"> Or</span>
+        </p>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-input-material">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder=" "
+              autoComplete="off"
+              className="form-control-material"
+              required
+            />
+            <label htmlFor="email">E-mail</label>
+          </div>
 
+          <div className="form-input-material">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder=" "
+              autoComplete="off"
+              className="form-control-material"
+              required
+            />
+            <label htmlFor="password">Password</label>
+          </div>
 
-<p className="divider-text">
-	<span className="bg-light"> SignIn</span>
-</p>
-<FacebookSignIn />
-<p className="divider-text">
-	<span className="bg-light"> Or</span>
-</p>
-		<form onSubmit={handleSubmit}>
-			<div className="form-group input-group">
-				<div className="input-group-prepend">
-					<span className="input-group-text"> <i className="fa fa-envelope"></i> </span>
-				</div>
-				<input name="email" className="form-control" placeholder="Email address" type="email" />
-			</div>
-			<div className="form-group input-group">
-				<div className="input-group-prepend">
-					<span className="input-group-text"> <i className="fa fa-lock"></i> </span>
-				</div>
-				<input name='password' className="form-control" placeholder="Create password" type="password" />
-			</div>
+          <button type="submit" className="btn btn-primary btn-ghost">
+            {" "}
+            SignIn{" "}
+          </button>
 
-			<div className="form-group">
-				<button type="submit" className="btn btn-primary btn-block"> SignIn  </button>
-			</div>
-			<div className="text-center">Dont Have an account? <LinkRouter to="/signup">SignUp</LinkRouter> </div>
-		</form>
-</article>
-
-	)
-
+          <div className="text-center">
+            Dont Have an account? <LinkRouter to="/signup" className="signup-btn">SignUp</LinkRouter>{" "}
+          </div>
+        </form>
+      </div>
+    </article>
+  );
 }
 
 const mapDispatchToProps = {
-	signInUser: userActions.signInUser,
-
-}
+  signInUser: userActions.signInUser,
+};
 
 const mapStateToProps = (state) => {
-	return {
-		user: state.userReducer.user
-	}
-}
-	
-
+  return {
+    user: state.userReducer.user,
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

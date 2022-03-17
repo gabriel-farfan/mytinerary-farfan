@@ -49,18 +49,21 @@ body {
 }
 
 .navbar .rightSide {
-  flex: 50%;
+
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .navbar a {
+  display: flex;
   color: black;
   text-decoration: none;
-  margin: 20px;
+  margin-right: 20px;
+  max-width: 5rem;
+  align-items: center;
 }
 
 .navbar .rightSide button {
@@ -70,12 +73,8 @@ body {
   cursor: pointer;
 }
 
-.navbar .rightSide img {
-  font-size: 30px;
-}
-
 .logousr {
-  width: 8%;
+  width: 50%;
 }
 
 .navbar #open {
@@ -182,6 +181,7 @@ body {
 /* ------------- HOME ------------ */
 
 .home-main-container {
+  background-color: #F0F8FF;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -272,6 +272,7 @@ body {
 /* ------------- CITIES ------------ */
 
 .cities-main {
+  background-color: #F0F8FF;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -494,6 +495,120 @@ body {
 }
 
 
+/* ------------- SIGN FORM ------------ */
+
+
+
+.card-body {
+  background-image: url(../img/www.jpg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 30rem;
+  
+}
+
+.form-container-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #e0dfdff5;
+  min-height: 10rem;
+  border-radius: 10px;
+  padding: 3%;
+  margin: 5%;
+  width: 50%;
+}
+
+.form-container-main h1 {
+  color: rgb(51, 95, 255);
+}
+
+.profile-img {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.form-input-material {
+  --input-default-border-color: white;
+  --input-border-bottom-color: white;
+  margin: 12px 0;
+}
+
+.form-input-material input {
+  color: black;
+  font-weight: 400;
+  font-size: large;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 40px;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+    0 1px 1px rgba(128, 128, 128, 0.155),
+    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+    0 12px 12px rgba(128, 128, 128, 0.35);
+}
+
+.login-form .btn {
+  width: 100%;
+  margin: 18px 0 9px 0;
+}
+
+.login-form h1 {
+  margin: 0 0 24px 0;
+}
+
+.btn-primary {
+  font-size: 18px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  will-change: box-shadow, transform;
+  background: radial-gradient(100% 100% at 100% 0%, #89e5ff 0%, #5468ff 100%);
+  box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%),
+    0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%),
+    inset 0px -0.01em 0px rgb(58 65 111 / 50%);
+  padding: 0 2em;
+  border-radius: 0.3em;
+  color: #fff;
+  height: 2.6em;
+  text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%),
+    0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #3c4fe0;
+  transform: translateY(-0.1em);
+}
+
+.btn-primary:active {
+  box-shadow: inset 0px 0.1em 0.6em #3c4fe0;
+  transform: translateY(0em);
+}
+
+.signin-btn, .signup-btn {
+	color: #5E80FF;
+}
+
 
 /* ------------- MEDIA QUERIES ------------ */
 
@@ -700,3 +815,5 @@ body {
     color: #121619;
   }
 }
+
+

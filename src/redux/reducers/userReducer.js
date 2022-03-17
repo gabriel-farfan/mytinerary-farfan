@@ -2,18 +2,16 @@ const initialState = {
     user: null,
     snackbar:{view: false,
         message: '',
-        success:false},
-    
+        success:false},    
 }
 
-const userReducer = (state = initialState, action) => {
-    
+const userReducer = (state = initialState, action) => {    
     
     switch (action.type) {
         case 'user':
             return {
                 ...state,
-                user: action.payload,   
+                user: action.payload.response.userData,   
             }
             case 'message':
             return {
