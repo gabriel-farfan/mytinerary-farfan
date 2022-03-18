@@ -14,12 +14,13 @@ const validator = (req, res, next) => {
             'string.min':'The password must contain at least 8 characters and contain uppercase, lowercase and numbers.',
             'string.pattern':"The password must be alphanumeric and contain a number."
         }),
+        image:joi.string(),
         pais: joi.string().max(20).min(3).trim().required().messages({
             'string.min':'The COUNTRY must contain more than 3 characters.',
             'string.max':"The COUNTRY must contain a maximum of 20 characters."
         }),
         
-        from:joi.string()
+        from:joi.string(),
     })
 
     const validation = schema.validate(req.body.userData, {abortEarly:false})

@@ -16,6 +16,7 @@ function Navbar(props) {
   };
   return (
     <div className="navbar">
+      {console.log(props.user)}
       <div className="leftSide" id={openLinks ? "open" : "close"}>
         <Link to="/">
           <img className="logo-navbar" src={Logo} />
@@ -24,17 +25,32 @@ function Navbar(props) {
         <div className="hiddenLinks">
           <Link to="/"> Home </Link>
           <Link to="/Cities"> Cities </Link>
-          <Link to="/signup">
-            <img className="logousr" src={LogoUsr} />
-          </Link>
+          {props.user ? (
+            <Link to="/signup">
+              <img className="logousr" src={props.user.image} />
+            </Link>
+          ) : (
+            <Link to="/signup">
+              <img className="logousr" src={LogoUsr} />
+            </Link>
+          )}
         </div>
       </div>
       <div className="rightSide">
         <Link to="/"> Home </Link>
         <Link to="/Cities"> Cities </Link>
-        <Link to="/signup">
+        {props.user ? (
+            <Link to="/signup">
+              <img className="logousr" src={props.user.image} />
+            </Link>
+          ) : (
+            <Link to="/signup">
+              <img className="logousr" src={LogoUsr} />
+            </Link>
+          )}
+        {/* <Link to="/signup">
           <img className="logousr" src={LogoUsr} />
-        </Link>
+        </Link> */}
         <button onClick={toggleNavbar}>
           <ReorderIcon />
         </button>
@@ -53,4 +69,4 @@ const mapDispatchToProps = {
   signOut: userActions.signOut
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

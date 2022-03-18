@@ -1,11 +1,7 @@
 import React, {useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Container from './components/SignUp/container';
-import Snackbar from './components/Snackbar';
-// import axios from 'axios'
 import { connect } from "react-redux"
 import userActions from './redux/actions/userActions';
-
 
 
 import "./styles/App.css";
@@ -20,8 +16,14 @@ import SignIn from "./components/SignUp/signin";
 
 
  
-const App = () => {
-  
+function App (props) {
+  useEffect(() => {
+    if(localStorage.getItem('token')!== null){
+      const token = localStorage.getItem("token")
+      props.VerificarToken(token)
+    }
+  },[])
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -33,6 +35,7 @@ const App = () => {
           <Route path="/CardDetails/:id" element={<Details/>}/>
           <Route path="/signup" element={<SignUp/>}/>
           <Route path="/signin" element={<SignIn/>}/>
+          
         </Routes>
         <Footer />
       </div>
@@ -40,4 +43,9 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = {
+	VerificarToken: userActions.VerificarToken,
+}
+
+export default connect(null, mapDispatchToProps)(App);
+

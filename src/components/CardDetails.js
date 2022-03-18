@@ -5,8 +5,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import "../styles/App.css";
-import "../styles/CardDetails.css"
 import { getAllCities } from "../apiCalls";
 import {connect} from 'react-redux'
 import { styled } from '@mui/material/styles';
@@ -21,6 +19,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import citiesActions from '../redux/actions/citiesActions'
 import itinerariesActions from '../redux/actions/itinerariesActions'
+import "../styles/App.css";
+import "../styles/CardDetails.css"
 
 
 
@@ -65,11 +65,11 @@ function Details(props) {
 
   return (
     <div className="card-detail-main">
-      <div className="titleDetails" >{detailData.map((city) => city.name)}</div>
+      <div className="titleDetails" >{detailData.map((city) => city.name) }</div>
       {/* {console.log(props)} */}
-      <div className="details-container">
+      <div className="details-container" >
         {detailData.map ((city) => (
-          <Card sx={{ maxWidth: 345 }} >
+          <Card sx={{ maxWidth: 345 }} key={city._id2}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -101,8 +101,6 @@ function Details(props) {
       <div className="details-container-itinerary">
         {dataPrueba.length ? (
           dataPrueba.map((itinerary) => (
-
-
             <Card sx={{ maxWidth: 345 }} key={itinerary._id}>
               <CardHeader
                 avatar={
@@ -151,10 +149,12 @@ function Details(props) {
                     <p>{itinerary.description}</p>
                   </Typography>
                   <Typography paragraph>
-                    <p>Price: {itinerary.price}</p>
+                    <div className="price-duration">
+                      <p className="price">Price: {"💵".repeat(itinerary.price)}</p>
+                    </div>
                   </Typography>
                   <Typography paragraph>
-                    <p>Duration: {itinerary.duration}</p>
+                    <p className="duration">Duration: {itinerary.time} hs 🕑</p>
                   </Typography>
                   <Typography paragraph>
                     <p>Hashtags #:{itinerary.hashtags}</p>

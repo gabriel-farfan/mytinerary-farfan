@@ -20,10 +20,7 @@ function DinamicCard(props) {
 
   useEffect(() => {
     props.getCities()
-    // axios.get(`http://localhost:4000/api/allcities`).then((response) => {
-    //   setCityData(response.data.response.ciudades);
-    //   setResultado(response.data.response.ciudades);
-    // });
+    
   }, []);
 
   const handleChange = (e) => {
@@ -37,12 +34,7 @@ function DinamicCard(props) {
     setBusqueda(e.target.value);
     props.filterCities (props.searchedCities, busqueda.trim())
     console.log(Resultado);
-    // var resultadosBusqueda = [];
-    // resultadosBusqueda.push(
-    //   ...cityData.filter((elemento) =>
-    //     elemento.name.toLowerCase().startsWith(terminoBusqueda.toLowerCase())
-    //   )
-    // );
+    
 
     if (props.allCities.length > 0) {
       setResultado(props.allCities);
@@ -96,18 +88,10 @@ function DinamicCard(props) {
               <Typography gutterBottom variant="h5" component="div">
                 <p>{city.name}</p>
               </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
-                <p>{city.description}</p>
-              </Typography> */}
+              
             </CardContent>
           </CardActionArea>
-          {/* <CardActions>
-            <LinkRouter to={`/DetailCard/${city.id}`}>
-              <Button size="medium" color="primary">
-                View More!
-              </Button>
-            </LinkRouter>
-          </CardActions> */}
+
           <CardActions>
             <LinkRouter to={`/CardDetails/${city._id}`}>
               <Button size="small">View More!</Button>

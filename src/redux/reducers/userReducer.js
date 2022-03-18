@@ -9,9 +9,10 @@ const userReducer = (state = initialState, action) => {
     
     switch (action.type) {
         case 'user':
+            console.log(action.payload)
             return {
                 ...state,
-                user: action.payload.response.userData,   
+                user: action.payload,   
             }
             case 'message':
             return {

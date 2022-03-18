@@ -1,10 +1,8 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
-
 //material ui
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { styled } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -45,6 +43,7 @@ function Snack(props) {
 
   return (
     <div>
+      {console.log(props.snackbar)}
       {props.snackbar.view === true && (
         <MySnackbar
           anchorOrigin={{
@@ -79,7 +78,7 @@ function Snack(props) {
 
 const mapStateToProps = (state) => {
   return {
-      snackbar: state.userReducer.snackbar,
+    snackbar: state.userReducer.snackbar,
       
   }
 }

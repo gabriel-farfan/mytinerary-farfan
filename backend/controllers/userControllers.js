@@ -23,10 +23,10 @@ const sendEmail = async (email, uniqueString) => {
   let mailOptions = {
     from: sender, //DE QUIEN
     to: email, //A QUIEN
-    subject: "Verificacion de email usuario ", //EL ASUNTO Y EN HTML EL TEMPLATE PARA EL CUERPO DE EMAIL Y EL LINK DE VERIFICACION
+    subject: "User Email Verification", //EL ASUNTO Y EN HTML EL TEMPLATE PARA EL CUERPO DE EMAIL Y EL LINK DE VERIFICACION
     html: `
         <div >
-        <h1 style="color:red">Presiona <a href=http://localhost:4000/api/verify/${uniqueString}>aqui</a> para confirma tu email. Gracias </h1>
+        <h1 style="color:red">Tap <a href=http://localhost:4000/api/verify/${uniqueString}>Here</a> to confirm your Email... Thank you! </h1>
         </div>
         `,
   };
@@ -35,7 +35,7 @@ const sendEmail = async (email, uniqueString) => {
     if (error) {
       console.log(error);
     } else {
-      console.log("Mensaje enviado");
+      console.log("Message sent");
     }
   });
 };
@@ -52,13 +52,13 @@ const usersControllers = {
       res.redirect("http://localhost:3000/"); //REDIRECCIONA AL USUARIO A UNA RUTA DEFINIDA
       //return  res.json({success:true, response:"Su email se ha verificado correctamente"})
     } else {
-      res.json({ success: false, response: "Su email no se ha verificado" });
+      res.json({ success: false, response: "Your email has not been verified" });
     }
   },
 
   signUpUsers: async (req, res) => {
     console.log(req.body);
-    let { fullName, email, password, from, pais } = req.body.userData;
+    let { fullName, email, password, image, from, pais } = req.body.userData;
 
     const test = req.body.test;
 
@@ -75,7 +75,7 @@ const usersControllers = {
             success: false,
             from: "signup",
             message:
-              "Ya has realizado tu SignUp de esta forma por favor realiza SignIn",
+              "You have already made your SignUp in this way... Please SignIn",
           });
         } else {
           const contraseñaHasheada = bcryptjs.hashSync(password, 10);
@@ -91,7 +91,7 @@ const usersControllers = {
               success: true,
               from: "signup",
               message:
-                "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp y agregarlo a tus metodos de SignIN ",
+                "We sent you an email to validate it. Please check your email box to complete the signUp and add it to your SignIn methods ",
             });
           } else {
             usuarioExiste.save();
@@ -100,7 +100,7 @@ const usersControllers = {
               success: true,
               from: "signup",
               message:
-                "Agregamos " + from + " a tus medios para realizar signIn",
+                "We add " + from + " to perform signIn",
             });
           }
         }
@@ -116,6 +116,7 @@ const usersControllers = {
           password: [contraseñaHasheada],
           uniqueString: crypto.randomBytes(15).toString("hex"),
           emailVerificado: false,
+          image,
           from: [from],
           pais,
         });
@@ -127,7 +128,7 @@ const usersControllers = {
           res.json({
             success: true,
             from: "signup",
-            message: "Felicitaciones se ha creado tu usuario con " + from,
+            message: "Congratulations! your user has been created with " + from,
           }); // AGREGAMOS MENSAJE DE VERIFICACION
         } else {
           //PASAR EMAIL VERIFICADO A FALSE
@@ -139,7 +140,7 @@ const usersControllers = {
             success: true,
             from: "siggup",
             message:
-              "Te enviamos un email para validarlo, por favor verifica tu casilla para completar el signUp ",
+              "We sent you an email to validate it, please check your box to complete the signUp ",
           }); // AGREGAMOS MENSAJE DE VERIFICACION
         }
       }
@@ -147,7 +148,7 @@ const usersControllers = {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Something went wrong... Try again in a few minutes",
       }); //CAPTURA EL ERROR
     }
   },
@@ -190,16 +191,16 @@ const usersControllers = {
               success: true,
               from: from,
               response: { token, userData },
-              message: "Bienvenido nuevamente " + userData.fullName,
+              message: "Welcome back " + userData.fullName,
             });
           } else {
             res.json({
               success: false,
               from: from,
               message:
-                "No has realizado el registro con " +
+                "You have not registered with " +
                 from +
-                "si quieres ingresar con este metodo debes hacer el signUp con " +
+                "If you want to enter with this method you must do the SignUp with " +
                 from,
             });
           }
@@ -215,6 +216,7 @@ const usersControllers = {
                 id: usuarioExiste._id,
                 fullName: usuarioExiste.fullName,
                 email: usuarioExiste.email,
+                image: usuarioExiste.image,
                 from: from,
               };
               const token = jwt.sign({ ...userData }, process.env.SECRET_KEY, {
@@ -225,13 +227,13 @@ const usersControllers = {
                 success: true,
                 from: from,
                 response: { token, userData },
-                message: "Bienvenido nuevamente " + userData.fullName,
+                message: "Welcome back " + userData.fullName,
               });
             } else {
               res.json({
                 success: false,
                 from: from,
-                message: "El usuario o el password no coinciden",
+                message: "The username or password do not match",
               });
             }
           } else {
@@ -239,7 +241,7 @@ const usersControllers = {
               success: false,
               from: from,
               message:
-                "No has verificado tu email, por favor verifica ti casilla de emails para completar tu signUp",
+                "You have not verified your email, please check your email box to complete your signUp",
             });
           }
         } //SI NO ESTA VERIFICADO
@@ -248,10 +250,11 @@ const usersControllers = {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Something went wrong... Try again in a few minutes",
       });
     }
   },
+  
   signOutUser: async (req, res) => {
     const email = req.body.closeuser;
     const user = await User.findOne({ email });
@@ -268,14 +271,16 @@ const usersControllers = {
           id: req.user.id,
           fullName: req.user.fullName,
           email: req.user.email,
+          image: req.user.image,
           from: "token",
         },
-        message: "Bienvenido nuevamente " + req.user.fullName,
+        message: "Welcome back " + req.user.fullName,
       });
+      
     } else {
       res.json({
         success: false,
-        message: "Por favor realiza nuevamente signIn",
+        message: "Please SignIn again...",
       });
     }
   },

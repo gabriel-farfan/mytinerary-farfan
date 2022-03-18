@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 import { Link as LinkRouter } from "react-router-dom";
 import FacebookSignIn from "./FacebookSignIn";
+import Snackbar from '../Snackbar'
+
 import '../../styles/App.css'
 import './styleSign.css'
 
@@ -20,6 +22,8 @@ function SignIn(props) {
   console.log(props.user);
 
   return (
+    <>
+    <Snackbar/>
     <article className="card-body">
       <div className="form-container-main">
         <h4 className="card-title mt-3 text-center">User Account</h4>
@@ -69,6 +73,7 @@ function SignIn(props) {
         </form>
       </div>
     </article>
+    </>
   );
 }
 

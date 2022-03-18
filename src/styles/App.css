@@ -564,6 +564,7 @@ body {
     0 2.1px 2.1px rgba(128, 128, 128, 0.195),
     0 4.4px 4.4px rgba(128, 128, 128, 0.241),
     0 12px 12px rgba(128, 128, 128, 0.35);
+    width: auto;
 }
 
 .login-form .btn {
@@ -719,6 +720,15 @@ body {
   .slick-next {
     margin-right: 6%;
   }
+
+  .login-form{
+    width: 100%; 
+  }
+
+  .login-form input {
+    width: 100%;
+  }
+
 }
 
 @media only screen and (max-width: 550px) {
