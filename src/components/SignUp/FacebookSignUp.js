@@ -23,6 +23,7 @@ function FacebookSignUp(props) {
       fullName: res.name,
       email: res.email,
       password: res.id,
+      image: res.picture.data.url,
       from: "facebook",
       pais:props.pais
     }

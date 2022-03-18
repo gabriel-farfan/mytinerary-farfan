@@ -3,6 +3,7 @@ import axios from 'axios';
 const userActions = {
 
     signUpUser: (userData) => {
+        // console.log(userData)
         return async (dispatch, getState) => {
 
             const res = await axios.post('http://localhost:4000/api/auth/signUp', { userData })
@@ -11,7 +12,7 @@ const userActions = {
                 message: res.data.message,
                 success: res.data.success
             }});
-            console.log(res);
+            // console.log(res);
             // ACA SALE PARA "ROUTES"
             
         }

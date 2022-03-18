@@ -14,6 +14,11 @@ function Navbar(props) {
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
+
+  function SignOut () {
+    props.SignOutUser(props.user.email)
+  } 
+
   return (
     <div className="navbar">
       {console.log(props.user)}
@@ -40,14 +45,22 @@ function Navbar(props) {
         <Link to="/"> Home </Link>
         <Link to="/Cities"> Cities </Link>
         {props.user ? (
-            <Link to="/signup">
-              <img className="logousr" src={props.user.image} />
-            </Link>
-          ) : (
-            <Link to="/signup">
-              <img className="logousr" src={LogoUsr} />
-            </Link>
-          )}
+          <Link to="" onClick={SignOut}> SingOut </Link>
+        ) : (
+          <>
+            <Link to="/signup"> SignUp </Link>
+            <Link to="/signin"> SingIn </Link>
+          </>
+        )}
+        {props.user ? (
+          <Link to="/signup">
+            <img className="logousr" src={props.user.image} />
+          </Link>
+        ) : (
+          <Link to="/signup">
+            <img className="logousr" src={LogoUsr} />
+          </Link>
+        )}
         {/* <Link to="/signup">
           <img className="logousr" src={LogoUsr} />
         </Link> */}
@@ -66,7 +79,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  signOut: userActions.signOut
+  signOut: userActions.signOut,
+  SignOutUser: userActions.SignOutUser,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

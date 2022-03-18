@@ -35,6 +35,10 @@ function SignUp(props) {
   }
   // alert(props.message.message)
 
+  function SignOut () {
+    props.SignOutUser(props.user.email)
+  } 
+
   return (
     <>
     <Snackbar/>
@@ -42,7 +46,7 @@ function SignUp(props) {
         <div className="form-container-main">
 
         <div className="styled-select">
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example" onChange={selected}>
+          <select className="form-select form-select-sm" aria-label=".form-select-sm example" onChange={selected}>
 
             {paises.map(pais =>
 
@@ -117,9 +121,9 @@ function SignUp(props) {
               <button type="submit" className="btn btn-primary btn-ghost">
                 Create Account
               </button>
-              <button type="submit" className="btn btn-primary btn-ghost">
+              {/* <button type="" className="btn btn-primary btn-ghost" onClick={SignOut}>
                 Sign Out
-              </button>
+              </button> */}
               <div className="text-center">
                 Have an account? <LinkRouter to="/signin" className="signin-btn">SignIn</LinkRouter>{" "}
               </div>
@@ -134,10 +138,12 @@ function SignUp(props) {
 
 const mapDispatchToProps = {
   signUpUser: userActions.signUpUser,
+  SignOutUser: userActions.SignOutUser,
 };
 const mapStateToProps = (state) => {
   return {
     snackbar: state.userReducer.snackbar,
+    user: state.userReducer.user,
   };
 };
 

@@ -45,7 +45,7 @@ const usersControllers = {
     const { uniqueString } = req.params; //EXTRAE EL EL STRING UNICO DEL LINK
 
     const user = await User.findOne({ uniqueString: uniqueString });
-    console.log(user); //BUSCA AL USUARIO CORRESPONDIENTE AL LINK
+    // console.log(user); //BUSCA AL USUARIO CORRESPONDIENTE AL LINK
     if (user) {
       user.emailVerificado = true; //COLOCA EL CAMPO emailVerified en true
       await user.save();
@@ -57,20 +57,20 @@ const usersControllers = {
   },
 
   signUpUsers: async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let { fullName, email, password, image, from, pais } = req.body.userData;
 
     const test = req.body.test;
 
     try {
       const usuarioExiste = await User.findOne({ email }); //BUSCAR SI EL USUARIO YA EXISTE EN DB
-
+      
       if (usuarioExiste) {
-        console.log(usuarioExiste.from.indexOf(from));
+        // console.log(usuarioExiste.from.indexOf(from));
         if (usuarioExiste.from.indexOf(from) !== -1) {
-          console.log(
-            "resultado de if " + (usuarioExiste.from.indexOf(from) !== 0)
-          ); //INDEXOF = 0 EL VALOR EXISTE EN EL INDICE EQ A TRUE -1 NO EXITE EQ A FALSE
+          // console.log(
+          //   "resultado de if " + (usuarioExiste.from.indexOf(from) !== 0)
+          // ); //INDEXOF = 0 EL VALOR EXISTE EN EL INDICE EQ A TRUE -1 NO EXITE EQ A FALSE
           res.json({
             success: false,
             from: "signup",
