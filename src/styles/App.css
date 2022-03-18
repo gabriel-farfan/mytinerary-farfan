@@ -721,6 +721,10 @@ body {
     margin-right: 6%;
   }
 
+  .form-container-main{
+    width: 80%;
+  }
+
   .login-form{
     width: 100%; 
   }
