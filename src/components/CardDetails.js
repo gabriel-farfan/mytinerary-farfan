@@ -5,23 +5,25 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { getAllCities } from "../apiCalls";
-import {connect} from 'react-redux'
+// import { getAllCities } from "../apiCalls";
+import { connect } from 'react-redux'
 import { styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
+import { FaHeart, FaRegHeart } from 'react-icons/fa'
+// import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import citiesActions from '../redux/actions/citiesActions'
 import itinerariesActions from '../redux/actions/itinerariesActions'
+import Activity from "../components/Activity";
 import "../styles/App.css";
 import "../styles/CardDetails.css"
-
+import "../styles/card.css"
 
 
 const ExpandMore = styled((props) => {
@@ -36,9 +38,10 @@ const ExpandMore = styled((props) => {
 }));
 
 function Details(props) {
-  const { id  } = useParams();
-  const [detailData, setDetailData] = useState(props.allCities.filter(city => city._id == id));
-  const [dataPrueba, setDataPrueba] = useState([]) 
+  const { id } = useParams();
+  const [detailData, setDetailData] = useState(props.allCities.filter(city => city._id === id));
+  const [dataPrueba, setDataPrueba] = useState([])
+
 
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -48,28 +51,39 @@ function Details(props) {
   useEffect(() => {
     if (props.allCities < 1) {
       props.getOneCity(id)
-      .then(response => setDetailData(response))
+        .then(response => setDetailData(response))
     }
 
     props.getItinerariesPerCity(id)
-    .then(response => setDataPrueba(response))
+      .then(response => setDataPrueba(response))
+
+    props.getAllActivities()
 
   }, []);
 
-  if (!detailData) {
-    return ( <h1> Loading... Please Wait </h1> )
+  function LikeButton(idItinerary) {
+    props.likeItinerary(idItinerary)
+      .then(response => setDataPrueba(response))
   }
 
 
-  {/* CITY ------------------------------------ */}
+
+  if (!detailData) {
+    return (<h1> Loading... Please Wait </h1>)
+  }
+
+
+
+  {/* CITY ------------------------------------ */ }
 
   return (
     <div className="card-detail-main">
-      <div className="titleDetails" >{detailData.map((city) => city.name) }</div>
+    
+      {/* <div className="titleDetails" >{detailData.map((city) => city.name)}</div> */}
       {/* {console.log(props)} */}
       <div className="details-container" >
-        {detailData.map ((city) => (
-          <Card sx={{ maxWidth: 345 }} key={city._id2}>
+        {detailData?.map((city) => (
+          <Card key={city._id2}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -81,9 +95,6 @@ function Details(props) {
                 <Typography gutterBottom variant="h5" component="div">
                   <p>{city.name}</p>
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  <p>{city.description}</p>
-                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -91,7 +102,7 @@ function Details(props) {
       </div>
 
       {/* <div className="titleDetails">{detailData.map((city) => city.name)}</div> */}
-          <h2>Here you can see the recommended itineraries for this city. Enjoy!</h2>
+      <h2>Here you can see the recommended itineraries for this city. Enjoy!</h2>
 
 
       {/* ITINERARY ------------------------------------ */}
@@ -99,13 +110,16 @@ function Details(props) {
 
 
       <div className="details-container-itinerary">
+        {console.log(dataPrueba)}
         {dataPrueba.length ? (
           dataPrueba.map((itinerary) => (
-            <Card sx={{ maxWidth: 345 }} key={itinerary._id}>
+            <Card sx={{ width: '75%' }} key={itinerary._id}>
+          
+
               <CardHeader
                 avatar={
                   <Avatar >
-                    
+
                   </Avatar>
                 }
                 action={
@@ -114,7 +128,6 @@ function Details(props) {
                   </IconButton>
                 }
                 title={itinerary.title}
-                // subheader= {itinerary.price}
               />
               <CardMedia
                 component="img"
@@ -124,13 +137,17 @@ function Details(props) {
               />
               <CardContent>
                 <Typography variant="body2" color="text.secondary">
-                  
+
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
+
+                <IconButton aria-label="add to favorites" onClick={() => {
+                  LikeButton(itinerary._id)
+                }}>
+                  <FavoriteIcon /> <span>{itinerary.likes.length}</span>
                 </IconButton>
+
                 <IconButton aria-label="share">
                   <ShareIcon />
                 </IconButton>
@@ -146,21 +163,22 @@ function Details(props) {
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                   <Typography paragraph>
-                    <p>{itinerary.description}</p>
+                    <h4>{itinerary.description}</h4>
                   </Typography>
                   <Typography paragraph>
                     <div className="price-duration">
-                      <p className="price">Price: {"💵".repeat(itinerary.price)}</p>
+                      <h4 className="price">Price: {"💵".repeat(itinerary.price)}</h4>
                     </div>
                   </Typography>
                   <Typography paragraph>
-                    <p className="duration">Duration: {itinerary.time} hs 🕑</p>
+                    <h4 className="duration">Duration: {itinerary.time} hs 🕑</h4>
                   </Typography>
                   <Typography paragraph>
-                    <p>Hashtags #:{itinerary.hashtags}</p>
-                    <p>{itinerary.likes}</p>
+                    <h4>Hashtags #:{itinerary.hashtags}</h4>
+                    <h4>Likes: {itinerary.likes}</h4>
                   </Typography>
                 </CardContent>
+              <Activity itinerary = {itinerary._id}/>
               </Collapse>
             </Card>
           ))
@@ -168,26 +186,29 @@ function Details(props) {
           <h1> There's no itineraries for this city yet. Come back soon! </h1>
         )}
       </div>
-    </div>
+
+
+    </div >
   );
 }
 
-const mapStateToProps = (state ) => {
+const mapStateToProps = (state) => {
   return {
-  allCities : state.citiesReducer.allCities,
-  itineraries : state.itinerariesReducer.allCities,
-  auxiliar : state.itinerariesReducer.allCities,
+    allCities: state.citiesReducer.allCities,
+    itineraries: state.itinerariesReducer.allCities,
+    auxiliar: state.itinerariesReducer.allCities,
   }
 }
 
 const mapDispatchToProps = {
-  getCities : citiesActions.getCities,
+  getCities: citiesActions.getCities,
   getOneCity: citiesActions.getOneCity,
-  getItinerariesPerCity : itinerariesActions.getItinerariesPerCity,
+  getItinerariesPerCity: itinerariesActions.getItinerariesPerCity,
   getAllItineraries: itinerariesActions.getAllItineraries,
+  likeItinerary: itinerariesActions.likeItinerary,
+  getAllActivities: itinerariesActions.getAllActivities,
+
 }
 
 
-
-
-export default connect (mapStateToProps, mapDispatchToProps)(Details)
+export default connect(mapStateToProps, mapDispatchToProps)(Details)

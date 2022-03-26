@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
-import axios from "axios";
+// import axios from "axios";
 import Alert from "./Alert";
 import {connect} from 'react-redux'
 import citiesActions from '../redux/actions/citiesActions'
@@ -39,7 +39,7 @@ function DinamicCard(props) {
     if (props.allCities.length > 0) {
       setResultado(props.allCities);
       setAlert(false);
-    } else if (props.allCities.length == 0 && busqueda != "") {
+    } else if (props.allCities.length === 0 && busqueda !== "") {
       setResultado(props.allCities);
       setAlert(true);
     } else {
@@ -70,7 +70,7 @@ function DinamicCard(props) {
         </div>
       </div>
 
-      {/* Display de CARDS */}
+      {/* Display of CARDS */}
 
       <Alert StateAlert={AlertMessage} />
 

@@ -263,10 +263,10 @@ const usersControllers = {
   },
 
   verificarToken: (req, res) => {
-    console.log(req.user);
+    // console.log(req.user);
     if (!req.err) {
       res.json({
-        success: true,
+        success: true,  // SI ESTA TODO OK DEVUELVE LOS DATOS DEL MODELO DEL USR. QUE SE DEVUELVEN AL FRONT.
         response: {
           id: req.user.id,
           fullName: req.user.fullName,
