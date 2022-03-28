@@ -2,7 +2,7 @@ const Itinerary = require("../models/Itinerary");
 
 const itineraryController = {
   getAllItineraries: (req, res) => {
-    Itinerary.find()
+    Itinerary.find().populate("comments.userId", { fullName: 1 })
       .then((allItineraries) =>
         res.json({ success: true, response: allItineraries })
       )
@@ -40,7 +40,7 @@ const itineraryController = {
       let itinerary;
       let error = null;
       try {
-        itinerary = await Itinerary.find({ cityId: id });
+        itinerary = await Itinerary.find({ cityId: id }).populate("comments.userId", { fullName: 1 })
       } catch (err) {
         error = err;
       }
@@ -70,12 +70,12 @@ const itineraryController = {
         let ciudadI = itinerario.cityId
         if (itinerario.likes.includes(user)) {
             await Itinerary.findOneAndUpdate({ _id: id }, { $pull: { likes: user } }, { new: true })
-            allItineraries = await Itinerary.find({ cityId: ciudadI })
+            allItineraries = await Itinerary.find({ cityId: ciudadI }).populate("comments.userId", { fullName: 1 })
             res.json({ success: true, response: allItineraries })
             
           } else {
             await Itinerary.findOneAndUpdate({ _id: id }, { $push: { likes: user } }, { new: true })
-            allItineraries = await Itinerary.find({ cityId: ciudadI })
+            allItineraries = await Itinerary.find({ cityId: ciudadI }).populate("comments.userId", { fullName: 1 })
             res.json({ success: true, response: allItineraries })
             
         }

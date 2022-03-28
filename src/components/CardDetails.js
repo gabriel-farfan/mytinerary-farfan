@@ -44,12 +44,11 @@ function Details(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [inputText, setInputText] = useState("");
   const [ modify, setModify ] = useState(false);
+  const [ reload, setReload ] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
-
 
 
   useEffect(() => {
@@ -67,37 +66,39 @@ function Details(props) {
   }, []);
 
   function LikeButton(idItinerary) {
+    if (props.user) {
     props.likeItinerary(idItinerary)
       .then(response => setDataItinerary(response))
+  } else {
+    alert("You must be logged in to like an itinerary")
   }
+}
 
   function addComment(id) {
     console.log(id, inputText)
+    // setReload(!reload)
     const commentData = {
       itineraryId: id,
       comment: inputText
     }
     props.addComment(commentData)
-      .then(response => console.log(response))
+      .then(response => setDataItinerary(response))
   }
 
-  function modifyComment(id, comment) {
+  function modifyComment(event) {
     const commentData = {
       itineraryId: id,
-      comment: comment
+      comment: inputText
     }
     props.modifyComment(commentData)
       .then(response => console.log(response))
-    
-  }
-
-  function deleteComment(id, comment) { 
-    const commentData = {
-      itineraryId: id,
-      comment: comment
+      // setReload(!reload)
     }
-    props.deleteComment(id, commentData)
+    
+    function deleteComment(event) { 
+      props.deleteComment(event.target.id)
       .then(response => console.log(response))
+      // setReload(!reload)
   }
 
 
@@ -210,11 +211,14 @@ function Details(props) {
                     <h4>Likes: {itinerary.likes}</h4>
                   </Typography>
                 </CardContent>
+
+                {/* ACTIVITY CALL */}
               <Activity itinerary = {itinerary._id}/>
               </Collapse>
 
               {itinerary?.comments.map(comment =>
                   <>
+                  {console.log(comment.userId)}
                     {comment.userId?._id !== props.user?.id ?
                       <div class="card cardComments " key={comment._id}>
                         <div class="card-header">
@@ -231,14 +235,15 @@ function Details(props) {
                         </div>
                         <div class="card-body-comments">
                           <textarea type="text" className="card-text textComments" onChange={(event) => setModify(event.target.value)} defaultValue={comment.comment} />
-                          <button id={comment._id} onClick={modifyComment} class="btn btn-primary">Modificar</button>
-                          <button id={comment._id} onClick={deleteComment} class="btn btn-primary">Eliminar</button>
+                          <button id={comment._id} onClick={modifyComment} class="btn btn-primary">Edit</button>
+                          <button id={comment._id} onClick={deleteComment} class="btn btn-primary">Delete</button>
                         </div>
                       </div>
 
                     }
                   </>
                 )}
+
 
                 {props.user ?
                   <div class="card cardComments">
@@ -252,8 +257,6 @@ function Details(props) {
                   </div> :
                   <h1>Do Sign In to make a Comment! Thank You!</h1>
                 }
-
-
 
 
             </Card>
@@ -273,7 +276,8 @@ const mapStateToProps = (state) => {
     allCities: state.citiesReducer.allCities,
     itineraries: state.itinerariesReducer.allCities,
     auxiliar: state.itinerariesReducer.allCities,
-    user: state.userReducer.user
+    user: state.userReducer.user,
+    activities: state.itinerariesReducer.activities,
   }
 }
 
@@ -284,6 +288,7 @@ const mapDispatchToProps = {
   getAllItineraries: itinerariesActions.getAllItineraries,
   likeItinerary: itinerariesActions.likeItinerary,
   getAllActivities: itinerariesActions.getAllActivities,
+  getActivitiesPerItinerary: itinerariesActions.getActivitiesPerItinerary,
   addComment: itinerariesActions.addComment,
   modifyComment: itinerariesActions.modifyComment,
   deleteComment: itinerariesActions.deleteComment,

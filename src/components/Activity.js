@@ -17,7 +17,7 @@ function Activity(props) {
 
     useEffect(() => {
         if (props.allActivities < 1) {
-            props.getAllActivities()
+            props.getActivitiesPerItinerary(props.itinerary)
                 .then(response => setActivityData(response))
         }
         // props.getActivitiesPerItinerary(id)
@@ -32,7 +32,7 @@ function Activity(props) {
     return (
         <>
             <div className="activity-container">
-                {console.log(props)}
+                {console.log(props.activities)}
                 {activityData ? ( activityData.map((activity) => (
                         <Card sx={{ width: '75%' }} key={activity._id}>
                             {console.log(activity)}
@@ -60,11 +60,14 @@ function Activity(props) {
 
 const mapDispatchToProps = {
     getAllActivities: itinerariesActions.getAllActivities,
+    getActivitiesPerItinerary: itinerariesActions.getActivitiesPerItinerary,
 }
 
 const mapStateToProps = (state) => {
     return {
         allActivities: state.itinerariesReducer.activities,
+        activities: state.itinerariesReducer.activities,
+
     }
 }
 

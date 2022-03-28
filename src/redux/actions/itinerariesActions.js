@@ -40,7 +40,6 @@ const itinerariesActions = {
             } catch (error) {
                 console.log(error)
             }
-
         }
     },
 
@@ -83,8 +82,8 @@ const itinerariesActions = {
                         Authorization: 'Bearer ' + token
                     }
                 })
-                // return response.data.response
-                console.log(response)
+                console.log(response.data.response)
+                return response.data.response.devolver
             } catch (error) {
                 console.log(error)
             }
