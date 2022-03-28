@@ -6,71 +6,65 @@ import CardHeader from '@mui/material/CardHeader';
 import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CardMedia from "@mui/material/CardMedia";
+import TextField from '@material-ui/core/TextField';
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
 
-
-function Activity(props) {
+function Comment(props) {
     const { id } = useParams();
-    const [activityData, setActivityData] = useState([props.allActivities.filter(activity => activity.itineraryId === props.itinerary)])
+    const [commentData, setCommentData] = useState([props.allComments.filter(comment => comment.itineraryId === props.itinerary)])
 
 
     useEffect(() => {
-        if (props.allActivities < 1) {
-            props.getAllActivities()
-                .then(response => setActivityData(response))
+        if (props.allComments < 1) {
+            props.addCommentPerItinerary()
+                .then(response => setCommentData(response))
         }
-        // props.getActivitiesPerItinerary(id)
-            // .then(response => activityData(response))
     }, []);
 
-    props.allActivities.map(activity => {
-        // console.table(activity)
+    props.allComments.map(comment => {
     })
 
 
     return (
         <>
-            <div className="activity-container">
+            <div className="comment-container">
+                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
                 {console.log(props)}
-                {activityData ? ( activityData[0].map((activity) => (
-                        <Card sx={{ width: '75%' }} key={activity._id}>
-                            {console.log(activity)}
-                            <CardHeader
-                                title={activity.name}
-                            />
-                            <CardMedia
-                                component="img"
-                                height="200"
-                                image={process.env.PUBLIC_URL + `/images/${activity.photo}`}
-                                alt="img"
-                            />
-                        </Card>
-                    ))
+                {commentData ? (commentData[0].map((comment) => (
+
+                    <Card key={comment._id}>
+                        {console.log(comment)}
+                        <CardHeader
+                            title={comment.name}
+                        />
+                        <CardMedia
+                            component="img"
+                            height="200"
+                            image=""
+                            alt="img"
+                        />
+                    </Card>
+                ))
                 ) : (
-                    <h1> There's no Activities now! Come back soon! </h1>
+                    <h1> Comment </h1>
                 )}
             </div>
-
         </>
     )
-
-
-
 }
 
 
-
-
 const mapDispatchToProps = {
-    getActivitiesPerItinerary: itinerariesActions.getActivitiesPerItinerary,
-    getAllActivities: itinerariesActions.getAllActivities,
+    addComment: itinerariesActions.addComment,
+    modifiComment: itinerariesActions.modifyComment,
+    deleteComment: itinerariesActions.deleteComment,
 }
 
 const mapStateToProps = (state) => {
     return {
-        allActivities: state.itinerariesReducer.activities,
+        allComments: state.itinerariesReducer.activities,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Activity)
+export default connect(mapStateToProps, mapDispatchToProps)(Comment)

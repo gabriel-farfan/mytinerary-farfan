@@ -25,12 +25,8 @@ const itinerariesActions = {
     },
 
 
-    // --------------- NUEVOS -----------------------
-
-
 
     likeItinerary: (id) => {
-        console.log(id)
         const token = localStorage.getItem("token")
         return async () => {
             try {
@@ -39,7 +35,6 @@ const itinerariesActions = {
                         Authorization: 'Bearer ' + token
                     }
                 })
-                console.log(res.data)
                 return (res.data.response)
 
             } catch (error) {
@@ -50,7 +45,6 @@ const itinerariesActions = {
     },
 
     getAllActivities: () => {
-        console.log('HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
         return async (dispatch, getState) => {
             try {
                 let response = await axios.get(`http://localhost:4000/api/activities`)
@@ -60,7 +54,6 @@ const itinerariesActions = {
                     payload: response.data.response
                     // return response.data.response[0].activities
                 })
-
             } catch (error) {
                 console.log(error)
             }
@@ -79,50 +72,51 @@ const itinerariesActions = {
             }
         }
     },
+    
 
-    addCommentPerItinerary: (id, comment, token) => {
-        return async () => {
+    addComment: (comment) => {
+        const token = localStorage.getItem("token")
+        return async (dispatch, getState) => {
             try {
-                let response = await axios.put(`http://localhost:4000/api/itineraries/comments/${id}`, { comment, type: "addComment" }, {
+                let response = await axios.post(`http://localhost:4000/api/itinerary/comments`, { comment }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 })
-                return response.data.response
+                // return response.data.response
+                console.log(response)
             } catch (error) {
                 console.log(error)
             }
         }
     },
 
-    editAComment: (id, comment, token) => {
-        return async () => {
+    modifyComment: (comment) => {
+        const token = localStorage.getItem("token")
+        return async (dispatch, getState) => {
             try {
-                let response = await axios.put(`http://localhost:4000/api/itineraries/comments/${id}`, { comment, type: "editComment" }, {
+                let response = await axios.put(`http://localhost:4000/api/itinerary/comments`, { comment }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 })
                 console.log(response)
-                if (response.data.success) return { success: true, res: response.data.response }
             } catch (error) {
                 console.log(error)
             }
         }
     },
 
-    deleteAComment: (id, token, commentId) => {
-
+    deleteComment: (commentId) => {
+        const token = localStorage.getItem("token")
         return async () => {
             try {
-                let response = await axios.put(`http://localhost:4000/api/itineraries/comments/${id}`, { commentId, type: "deleteComment" }, {
+                let response = await axios.put(`http://localhost:4000/api/itinerary/comments`, { commentId }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 })
-                if (response.data.success) {
-                    return response.data
-                }
+                console.log(response)
             } catch (error) {
                 console.log(error)
             }

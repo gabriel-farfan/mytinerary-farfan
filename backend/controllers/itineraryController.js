@@ -55,37 +55,11 @@ const itineraryController = {
     }
   },
 
-  
-  // -----------   NUEVOS  -----------
-
-//   likeItinerary:async (req,res) =>{
-//     const id=req.params.id //LLEGA POR PARAMETRO DESDE AXIOS
-//     const user = req.user.id //LLEGA POR RESPUESTA DE PASSPORT
-
-//    await  Itinerary.findOne({_id: id})
-
-//     .then((itinerario) =>{
-//         console.log(itinerario)
-//         if(itinerario.likes.includes(user)){
-//            Itinerary.findOneAndUpdate({_id:id}, {$pull:{likes:user}},{new:true})//PULL QUITA, SACA
-//            .then((response)=> res.json({success:true, response:response.likes}))
-//            .catch((error) => console.log(error))
-//         }else{
-//             Itinerary.findOneAndUpdate({_id: id}, {$push:{likes:user}},{new:true})//PUSH AGREGA
-//             .then((response) => res.json({success:true, response:response.likes}))
-//             .catch((error) => console.log(error))
-//         }
-//     })
-//     .catch((error) => res.json({success:false, response:error}))
-// },
 
 
   likeItinerary: async (req, res) => {
     const id = req.params.id
     const user = (req.user._id).toString()
-    console.log('----------------IMPIMIENTO LA WEA -------------')
-    console.log(user + 'USUARIOOOOOOOO')
-    console.log(id + 'IDDDDDDDDDDDDDDD')
 
     let itinerario
     let error = null
@@ -94,18 +68,14 @@ const itineraryController = {
     try {
         itinerario = await Itinerary.findOne({ _id: id })
         let ciudadI = itinerario.cityId
-        console.log(itinerario + '-----------------')
         if (itinerario.likes.includes(user)) {
             await Itinerary.findOneAndUpdate({ _id: id }, { $pull: { likes: user } }, { new: true })
             allItineraries = await Itinerary.find({ cityId: ciudadI })
-            console.log(allItineraries)
             res.json({ success: true, response: allItineraries })
             
           } else {
             await Itinerary.findOneAndUpdate({ _id: id }, { $push: { likes: user } }, { new: true })
             allItineraries = await Itinerary.find({ cityId: ciudadI })
-            console.log("-------------------PRUEBA ------------")
-            console.log(allItineraries)
             res.json({ success: true, response: allItineraries })
             
         }
@@ -115,48 +85,8 @@ const itineraryController = {
     }
 },
 
-  
-  modifyComment: async (req, res) => {
-    switch (req.body.type) {
-      case "addComment":
-        try {
-          let newComment = await Itinerary.findOneAndUpdate({ _id: req.params.id }, { $push: { comments: { comment: req.body.comment, userId: req.user._id } } }, { new: true }).populate("comments.userId")
-          if (newComment) {
-            res.json({ success: true, response: newComment.comments })
-          } else {
-            throw new Error()
-          }
-        } catch (error) {
-          res.json({ success: false, response: error })
-        }
 
-        break
-      case "editComment":
-        try {
-          let updatedComment = await Itinerary.findOneAndUpdate({ "comments._id": req.params.id }, { $set: { "comments.$.comment": req.body.comment } }, { new: true })
-          if (updatedComment) {
-            res.json({ success: true, response: updatedComment.comments })
-          } else {
-            throw new Error()
-          }
-        } catch (error) {
-          res.json({ success: false, response: error.message })
-        }
-        break
-      case "deleteComment":
-        try {
-          let commentDeleted = await Itinerary.findOneAndUpdate({ "comments._id": req.body.commentId }, { $pull: { comments: { _id: req.body.commentId } } })
-          if (commentDeleted) {
-            res.json({ success: true })
-          } else {
-            throw new Error()
-          }
-        } catch (error) {
-          res.json({ success: false, response: error })
-        }
-        break
-    }
-  }
+
 };
 
 module.exports = itineraryController;

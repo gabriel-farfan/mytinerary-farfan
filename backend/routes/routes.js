@@ -4,14 +4,18 @@ const ciudadesController = require('../controllers/ciudadesController')
 const itineraryController = require('../controllers/itineraryController')
 const usersControllers = require('../controllers/userControllers')
 const activityController = require('../controllers/activityController')
-
+const commentsController = require('../controllers/commentsController')
 const passport = require('../config/passport')
 
 const { obtenerCiudades, cargarCiudad, borrarCiudad, getOneCity } = ciudadesController // llama "obtener ciudades" desde el controlador mediante el require
-const { getAllItineraries, addNewItinerary, getItineraryId, deleteItinerary, editItinerary, getItinerariesPerCity, likeItinerary, modifyComment, } = itineraryController
+
+const { getAllItineraries, addNewItinerary, getItineraryId, deleteItinerary, editItinerary, getItinerariesPerCity, likeItinerary } = itineraryController
+
 const { signUpUsers, signInUser, signOutUser, verifyEmail, verificarToken } = usersControllers
+
 const { getActivitiesPerItinerary, editActivity, addNewActivities, deleteActivity, getOneActivity, getAllActivities } = activityController
 
+const { addComment, modifyComment, deleteComment } = commentsController
 
 Router.route('/allcities')
     .get(obtenerCiudades)
@@ -29,14 +33,13 @@ Router.route("/itineraries")
 Router.route("/itineraries/:id")
     .get(getItinerariesPerCity)
 
+
 // ----------------- NUEVOS ----------------
 
 Router.route("/itinerary/:id")
     .get(getItineraryId)
     .delete(deleteItinerary)
     .put(editItinerary)
-
-
 
 
 //  ------ USERS ------
@@ -57,21 +60,6 @@ Router.route('/auth/signInToken')
     .get(passport.authenticate('jwt', { session: false }), verificarToken)
 
 
-//  ------ LIKES ------
-
-
-Router.route("/itinerary/like/:id")
-    .put(
-        passport.authenticate('jwt', { session: false }), likeItinerary
-    )
-
-//  ------ COMMENTS ------
-
-
-Router.route("/itinerary/comments/:id")
-    .put(
-        passport.authenticate('jwt', { session: false }), modifyComment
-    )
 
 
 //  ------ ACTIVITIES ------
@@ -88,6 +76,27 @@ Router.route('/activity/:id')
     .get(getOneActivity)
     .delete(deleteActivity)
     .put(editActivity)
+
+
+//  ------ LIKES ------
+
+
+Router.route("/itinerary/like/:id")
+    .put(
+        passport.authenticate('jwt', { session: false }), likeItinerary
+    )
+
+//  ------ COMMENTS ------
+
+
+Router.route("/itinerary/comments")
+    .post(passport.authenticate("jwt", { session: false }), addComment)
+    .put(passport.authenticate("jwt", { session: false }), modifyComment)
+
+
+Router.route("/itinerary/comments/:id")
+    .post(passport.authenticate("jwt", { session: false }), deleteComment)
+
 
 
 module.exports = Router

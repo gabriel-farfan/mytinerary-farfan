@@ -2,6 +2,7 @@ const initialState = {
   itineraries: [],
   auxiliar: [],
   activities: [],
+  comments: [],
 };
 
 const itinerariesReducer = (state = initialState, action) => {
@@ -21,13 +22,10 @@ const itinerariesReducer = (state = initialState, action) => {
       }
 
     case "GET_ALL_ACTIVITIES":
-      console.log(action.payload);
       return {
         ...state,
         activities: action.payload
       }
-
-
 
     default:
       return state;

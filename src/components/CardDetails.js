@@ -21,9 +21,9 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import citiesActions from '../redux/actions/citiesActions'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import Activity from "../components/Activity";
+// import Comment from "../components/Comments";
 import "../styles/App.css";
 import "../styles/CardDetails.css"
-import "../styles/card.css"
 
 
 const ExpandMore = styled((props) => {
@@ -40,13 +40,17 @@ const ExpandMore = styled((props) => {
 function Details(props) {
   const { id } = useParams();
   const [detailData, setDetailData] = useState(props.allCities.filter(city => city._id === id));
-  const [dataPrueba, setDataPrueba] = useState([])
-
-
+  const [dataItinerary, setDataItinerary] = useState([])
   const [expanded, setExpanded] = React.useState(false);
+  const [inputText, setInputText] = useState("");
+  const [ modify, setModify ] = useState(false);
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+
+
 
   useEffect(() => {
     if (props.allCities < 1) {
@@ -55,17 +59,46 @@ function Details(props) {
     }
 
     props.getItinerariesPerCity(id)
-      .then(response => setDataPrueba(response))
+      .then(response => setDataItinerary(response))
 
     props.getAllActivities()
+
 
   }, []);
 
   function LikeButton(idItinerary) {
     props.likeItinerary(idItinerary)
-      .then(response => setDataPrueba(response))
+      .then(response => setDataItinerary(response))
   }
 
+  function addComment(id) {
+    console.log(id, inputText)
+    const commentData = {
+      itineraryId: id,
+      comment: inputText
+    }
+    props.addComment(commentData)
+      .then(response => console.log(response))
+  }
+
+  function modifyComment(id, comment) {
+    const commentData = {
+      itineraryId: id,
+      comment: comment
+    }
+    props.modifyComment(commentData)
+      .then(response => console.log(response))
+    
+  }
+
+  function deleteComment(id, comment) { 
+    const commentData = {
+      itineraryId: id,
+      comment: comment
+    }
+    props.deleteComment(id, commentData)
+      .then(response => console.log(response))
+  }
 
 
   if (!detailData) {
@@ -75,6 +108,7 @@ function Details(props) {
 
 
   {/* CITY ------------------------------------ */ }
+  
 
   return (
     <div className="card-detail-main">
@@ -110,12 +144,10 @@ function Details(props) {
 
 
       <div className="details-container-itinerary">
-        {console.log(dataPrueba)}
-        {dataPrueba.length ? (
-          dataPrueba.map((itinerary) => (
+        {/* {console.log(dataItinerary)} */}
+        {dataItinerary.length ? (
+          dataItinerary.map((itinerary) => (
             <Card sx={{ width: '75%' }} key={itinerary._id}>
-          
-
               <CardHeader
                 avatar={
                   <Avatar >
@@ -180,6 +212,50 @@ function Details(props) {
                 </CardContent>
               <Activity itinerary = {itinerary._id}/>
               </Collapse>
+
+              {itinerary?.comments.map(comment =>
+                  <>
+                    {comment.userId?._id !== props.user?.id ?
+                      <div class="card cardComments " key={comment._id}>
+                        <div class="card-header">
+                          {comment.userId?.fullName}
+                        </div>
+                        <div class="card-body-comments">
+                          <p class="card-text-comment">{comment.comment}</p>
+                        </div>
+                      </div> :
+
+                      <div class="card cardComments">
+                        <div class="card-header">
+                          {comment.userId?.fullName}
+                        </div>
+                        <div class="card-body-comments">
+                          <textarea type="text" className="card-text textComments" onChange={(event) => setModify(event.target.value)} defaultValue={comment.comment} />
+                          <button id={comment._id} onClick={modifyComment} class="btn btn-primary">Modificar</button>
+                          <button id={comment._id} onClick={deleteComment} class="btn btn-primary">Eliminar</button>
+                        </div>
+                      </div>
+
+                    }
+                  </>
+                )}
+
+                {props.user ?
+                  <div class="card cardComments">
+                    <div class="card-header">
+                    LEAVE US YOUR COMMENT! 
+                    </div>
+                    <div class="card-body-addcomment ">
+                      <textarea onChange={(event) => setInputText(event.target.value)} className="card-text textComments" value={inputText} />
+                      <button onClick={() => { addComment(itinerary._id) }} class="btn btn-primary"> OK! </button>
+                    </div>
+                  </div> :
+                  <h1>Do Sign In to make a Comment! Thank You!</h1>
+                }
+
+
+
+
             </Card>
           ))
         ) : (
@@ -197,6 +273,7 @@ const mapStateToProps = (state) => {
     allCities: state.citiesReducer.allCities,
     itineraries: state.itinerariesReducer.allCities,
     auxiliar: state.itinerariesReducer.allCities,
+    user: state.userReducer.user
   }
 }
 
@@ -207,6 +284,9 @@ const mapDispatchToProps = {
   getAllItineraries: itinerariesActions.getAllItineraries,
   likeItinerary: itinerariesActions.likeItinerary,
   getAllActivities: itinerariesActions.getAllActivities,
+  addComment: itinerariesActions.addComment,
+  modifyComment: itinerariesActions.modifyComment,
+  deleteComment: itinerariesActions.deleteComment,
 
 }
 
