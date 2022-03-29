@@ -334,7 +334,7 @@ body {
 }
 
 .MuiPaper-root {
-  margin: 2%;
+  margin: 2rem !important;
   width: 30rem;
   border: solid 1px rgb(108, 156, 165);
 }

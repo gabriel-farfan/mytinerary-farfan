@@ -85,20 +85,20 @@ function Details(props) {
       .then(response => setDataItinerary(response))
   }
 
-  function modifyComment(event) {
+  function modifyComment(id) {
     const commentData = {
       itineraryId: id,
-      comment: inputText
+      comment: modify,
     }
     props.modifyComment(commentData)
       .then(response => console.log(response))
       // setReload(!reload)
     }
     
-    function deleteComment(event) { 
-      props.deleteComment(event.target.id)
+    function deleteComment(id) { 
+      props.deleteComment(dataItinerary.target.id)
       .then(response => console.log(response))
-      // setReload(!reload)
+      // setReload(!reload) 
   }
 
 

@@ -9,8 +9,8 @@ addComment: async (req, res) => {
     console.log('DATOSSSSSSSS')
     console.log(itineraryId, comment, user);
     try {
-        const nuevoComment = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $push: { comments: { comment: comment, userId: user } } }, { new: true }).populate("comments.userId", { fullName: 1 })
-        const idCiudad = nuevoComment.cityId
+        const newComment = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $push: { comments: { comment: comment, userId: user } } }, { new: true }).populate("comments.userId", { fullName: 1 })
+        const idCiudad = newComment.cityId
         const devolver = await Itinerary.find({ cityId: idCiudad }).populate("comments.userId", { fullName: 1, _id: 1 })
 
         res.json({ success: true, response: { devolver }, message: "Thanks for your Comment!" })

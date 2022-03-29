@@ -68,11 +68,6 @@ body {
 }
 
 
-
-.MuiPaper-root {
-  margin-top: 2rem !important;
-}
-
 .details-container {
   width: 90%;
 }
@@ -142,14 +137,40 @@ div.expand {
   width: 100% !important;
 }
 
+.details-container-itinerary .MuiCardActions-root {
+  display: flex !important;
+  flex-direction: row !important;
+
+}
+
+.activity-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.MuiPaper-root > div {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+
+}
+
 .card-text-comment {
   text-align: center;
 }
 
 .card-header {
-  
   text-align: center;
   font-weight: 800;
+  margin: 1%;
+}
+
+.card-body-comments {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 5% !important;
 }
 
 .card-body-addcomment {
