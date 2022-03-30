@@ -100,6 +100,8 @@ const itinerariesActions = {
                     }
                 })
                 console.log(response)
+                return response.data.response.devolver
+
             } catch (error) {
                 console.log(error)
             }

@@ -3,11 +3,8 @@ const Itinerary = require('../models/Itinerary');
 
 const itineraryController = {
 addComment: async (req, res) => {
-    console.log('PRUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
     const { itineraryId, comment } = req.body.comment
     const user = req.user._id
-    console.log('DATOSSSSSSSS')
-    console.log(itineraryId, comment, user);
     try {
         const newComment = await Itinerary.findOneAndUpdate({ _id: itineraryId }, { $push: { comments: { comment: comment, userId: user } } }, { new: true }).populate("comments.userId", { fullName: 1 })
         const idCiudad = newComment.cityId
@@ -25,12 +22,17 @@ addComment: async (req, res) => {
     
   
   modifyComment: async (req, res) => {
+      
     const { itineraryId, comment } = req.body.comment
     const user = req.user._id
+    console.log('DTSOSSSSSSSSSSSSSSSSSSSSS');
+    console.log(itineraryId, comment, user);
     try {
-        const newComment = await Itinerary.findOneAndUpdate({ "comments._id": itineraryId }, { $set: { "comments.$.comment": comment } }, { new: true })
+        const newComment = await Itinerary.findOneAndUpdate({ "comments._id": itineraryId }, { $set: { "comments.$.comment": comment } }, { new: true }).populate("comments.userId", { fullName: 1 })
+        const idCiudad = newComment.cityId
+        const devolver = await Itinerary.find({ cityId: idCiudad }).populate("comments.userId", { fullName: 1, _id: 1 })
         console.log(newComment)
-        res.json({ success: true, response: { newComment }, message: "Your comment has benn modified" })
+        res.json({ success: true, response: { devolver }, message: "Your comment has benn modified" })
   
     }
     catch (error) {
@@ -46,8 +48,10 @@ addComment: async (req, res) => {
     const user = req.user._id
     try {
         const deleteComment = await Itinerary.findOneAndUpdate({ "comments._id": id }, { $pull: { comments: { _id: id } } }, { new: true })
+        const idCiudad = deleteComment.cityId
+        const devolver = await Itinerary.find({ cityId: idCiudad }).populate("comments.userId", { fullName: 1, _id: 1 })
         console.log(deleteComment)
-        res.json({ success: true, response: { deleteComment }, message: "Comment Deleted" })
+        res.json({ success: true, response: { devolver }, message: "Comment Deleted" })
   
     }
     catch (error) {

@@ -5,15 +5,12 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-// import { getAllCities } from "../apiCalls";
 import { connect } from 'react-redux'
 import { styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import { FaHeart, FaRegHeart } from 'react-icons/fa'
-// import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -21,7 +18,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import citiesActions from '../redux/actions/citiesActions'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import Activity from "../components/Activity";
-// import Comment from "../components/Comments";
 import "../styles/App.css";
 import "../styles/CardDetails.css"
 
@@ -85,21 +81,35 @@ function Details(props) {
       .then(response => setDataItinerary(response))
   }
 
-  function modifyComment(id) {
+  function modifyComment(event) {
+    console.log(event.target.id)
+    console.log(modify)
     const commentData = {
-      itineraryId: id,
+      itineraryId: event.target.id,
       comment: modify,
     }
     props.modifyComment(commentData)
-      .then(response => console.log(response))
-      // setReload(!reload)
+    .then(response => setDataItinerary(response))
     }
     
     function deleteComment(id) { 
       props.deleteComment(dataItinerary.target.id)
       .then(response => console.log(response))
-      // setReload(!reload) 
   }
+
+  // async function modifyComment(id) {
+  //   const commentData = {
+  //     itineraryId: id,
+  //     comment: modify,
+  //   }
+  //   await props.modifyComment(commentData)
+  //   setReload(!reload)
+
+  // }
+  // async function deleteComment(id) {
+  //   await props.deleteComment(id)
+  //   setReload(!reload)
+  // }
 
 
   if (!detailData) {
