@@ -4,7 +4,7 @@ const itinerariesActions = {
 
     getItinerariesPerCity: (id) => {
         return async (dispatch, getState) => {
-            let res = await axios.get(`http://localhost:4000/api/itineraries/${id}`);
+            let res = await axios.get(`https://mytinerary-farfan.herokuapp.com//api/itineraries/${id}`);
             // console.log(res.data.response);
             return (res.data.response)
             // dispatch({
@@ -16,7 +16,7 @@ const itinerariesActions = {
 
     getAllItineraries: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get(`http://localhost:4000/api/itineraries`);
+            const res = await axios.get(`https://mytinerary-farfan.herokuapp.com/api/itineraries`);
             dispatch({
                 type: "GET_ITINERARIES",
                 payload: res.data.response,
@@ -30,7 +30,7 @@ const itinerariesActions = {
         const token = localStorage.getItem("token")
         return async () => {
             try {
-                let res = await axios.put(`http://localhost:4000/api/itinerary/like/${id}`, {}, {
+                let res = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/like/${id}`, {}, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
@@ -46,7 +46,7 @@ const itinerariesActions = {
     getAllActivities: () => {
         return async (dispatch, getState) => {
             try {
-                let response = await axios.get(`http://localhost:4000/api/activities`)
+                let response = await axios.get(`https://mytinerary-farfan.herokuapp.com/api/activities`)
 
                 dispatch({
                     type: "GET_ALL_ACTIVITIES",
@@ -62,7 +62,7 @@ const itinerariesActions = {
     getActivitiesPerItinerary: (id) => {
         return async () => {
             try {
-                let response = await axios.get(`http://localhost:4000/api/activities/${id}`)
+                let response = await axios.get(`https://mytinerary-farfan.herokuapp.com/api/activities/${id}`)
                 if (response.data.success) {
                     return response.data.response[0].activities
                 }
@@ -77,7 +77,7 @@ const itinerariesActions = {
         const token = localStorage.getItem("token")
         return async (dispatch, getState) => {
             try {
-                let response = await axios.post(`http://localhost:4000/api/itinerary/comments`, { comment }, {
+                let response = await axios.post(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments`, { comment }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
@@ -94,7 +94,7 @@ const itinerariesActions = {
         const token = localStorage.getItem("token")
         return async (dispatch, getState) => {
             try {
-                let response = await axios.put(`http://localhost:4000/api/itinerary/comments`, { comment }, {
+                let response = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments`, { comment }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
@@ -112,7 +112,7 @@ const itinerariesActions = {
         const token = localStorage.getItem("token")
         return async () => {
             try {
-                let response = await axios.put(`http://localhost:4000/api/itinerary/comments`, { commentId }, {
+                let response = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments`, { commentId }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }

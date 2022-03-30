@@ -48,7 +48,7 @@ export default function MultipleItems () {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/api/allcities`)
+      .get(`https://mytinerary-farfan.herokuapp.com/api/allcities`)
       .then((response) => setCityData(response.data.response.ciudades.slice(0, 12)));
     console.log(cityData)
   }, []);
