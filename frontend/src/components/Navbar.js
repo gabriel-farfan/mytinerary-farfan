@@ -21,7 +21,6 @@ function Navbar(props) {
 
   return (
     <div className="navbar">
-      {console.log(props.user)}
       <div className="leftSide" id={openLinks ? "open" : "close"}>
         <Link to="/">
           <img className="logo-navbar" src={Logo} />

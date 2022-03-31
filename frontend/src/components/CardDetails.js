@@ -50,7 +50,7 @@ function Details(props) {
   useEffect(() => {
     if (props.allCities < 1) {
       props.getOneCity(id)
-        .then(response => setDetailData(response))
+        .then(response => setDetailData([response]))
     }
 
     props.getItinerariesPerCity(id)
@@ -58,6 +58,8 @@ function Details(props) {
 
     props.getAllActivities()
 
+    // return () => {
+    // }
 
   }, []);
 
@@ -71,7 +73,6 @@ function Details(props) {
 }
 
   function addComment(id) {
-    console.log(id, inputText)
     // setReload(!reload)
     const commentData = {
       itineraryId: id,
@@ -82,8 +83,6 @@ function Details(props) {
   }
 
   function modifyComment(event) {
-    console.log(event.target.id)
-    console.log(modify)
     const commentData = {
       itineraryId: event.target.id,
       comment: modify,
@@ -97,21 +96,6 @@ function Details(props) {
       .then(response => console.log(response))
   }
 
-  // async function modifyComment(id) {
-  //   const commentData = {
-  //     itineraryId: id,
-  //     comment: modify,
-  //   }
-  //   await props.modifyComment(commentData)
-  //   setReload(!reload)
-
-  // }
-  // async function deleteComment(id) {
-  //   await props.deleteComment(id)
-  //   setReload(!reload)
-  // }
-
-
   if (!detailData) {
     return (<h1> Loading... Please Wait </h1>)
   }
@@ -120,15 +104,12 @@ function Details(props) {
 
   {/* CITY ------------------------------------ */ }
   
-
   return (
     <div className="card-detail-main">
-    
-      {/* <div className="titleDetails" >{detailData.map((city) => city.name)}</div> */}
-      {/* {console.log(props)} */}
-      <div className="details-container" >
+      {console.log(detailData)}
+          <div className="details-container">
         {detailData?.map((city) => (
-          <Card key={city._id2}>
+          <Card key={city._id}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -138,7 +119,7 @@ function Details(props) {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  <p>{city.name}</p>
+                  <span>{city.name}</span>
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -146,7 +127,6 @@ function Details(props) {
         ))}
       </div>
 
-      {/* <div className="titleDetails">{detailData.map((city) => city.name)}</div> */}
       <h2>Here you can see the recommended itineraries for this city. Enjoy!</h2>
 
 
@@ -155,7 +135,6 @@ function Details(props) {
 
 
       <div className="details-container-itinerary">
-        {/* {console.log(dataItinerary)} */}
         {dataItinerary.length ? (
           dataItinerary.map((itinerary) => (
             <Card sx={{ width: '75%' }} key={itinerary._id}>
@@ -228,22 +207,21 @@ function Details(props) {
 
               {itinerary?.comments.map(comment =>
                   <>
-                  {console.log(comment.userId)}
                     {comment.userId?._id !== props.user?.id ?
-                      <div class="card cardComments " key={comment._id}>
-                        <div class="card-header">
+                      <div className="card cardComments " key={comment._id}>
+                        <div className="card-header">
                           {comment.userId?.fullName}
                         </div>
-                        <div class="card-body-comments">
-                          <p class="card-text-comment">{comment.comment}</p>
+                        <div className="card-body-comments">
+                          <p className="card-text-comment">{comment.comment}</p>
                         </div>
                       </div> :
 
-                      <div class="card cardComments">
-                        <div class="card-header">
+                      <div className="card cardComments">
+                        <div className="card-header">
                           {comment.userId?.fullName}
                         </div>
-                        <div class="card-body-comments">
+                        <div className="card-body-comments">
                           <textarea type="text" className="card-text textComments" onChange={(event) => setModify(event.target.value)} defaultValue={comment.comment} />
                           <button id={comment._id} onClick={modifyComment} class="btn btn-primary">Edit</button>
                           <button id={comment._id} onClick={deleteComment} class="btn btn-primary">Delete</button>
@@ -256,11 +234,11 @@ function Details(props) {
 
 
                 {props.user ?
-                  <div class="card cardComments">
-                    <div class="card-header">
+                  <div className="card cardComments">
+                    <div className="card-header">
                     LEAVE US YOUR COMMENT! 
                     </div>
-                    <div class="card-body-addcomment ">
+                    <div className="card-body-addcomment ">
                       <textarea onChange={(event) => setInputText(event.target.value)} className="card-text textComments" value={inputText} />
                       <button onClick={() => { addComment(itinerary._id) }} class="btn btn-primary"> OK! </button>
                     </div>
