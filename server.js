@@ -16,8 +16,8 @@ const path = require('path')
 
 app.use(cors())
 app.use(express.json()) //para que me de respuestas en formato JSON
-app.use(passport.initialize())
 app.use('/api', Router)
+app.use(passport.initialize())
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
@@ -26,5 +26,4 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-
-app.listen( process.env.PORT || 4000, process.env.HOST || '0.0.0.0', () => console.log(`Server ready on PORT ${process.env.PORT || 4000} `));
+app.listen(PORT, () => console.log("Server ready on PORT" + PORT));

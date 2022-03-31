@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "start": "nodemon server.js"
   },
   "author": "Gabriel Farfan",
   "license": "ISC",
@@ -14,7 +13,6 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.5.1",
-    "@mui/icons-material": "^5.5.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",

@@ -197,7 +197,7 @@ function Details(props) {
                   </Typography>
                   <Typography paragraph>
                     <h4>Hashtags #:{itinerary.hashtags}</h4>
-                    <h4>Likes: {itinerary.likes}</h4>
+                    <h4>Likes: {itinerary.likes.length}</h4>
                   </Typography>
                 </CardContent>
 
