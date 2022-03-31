@@ -25,7 +25,7 @@ export const eliminarCiudad = async (id) => {
   console.log(id);
   try {
     let data = await axios.delete(
-      `http://https://mytinerary-farfan.herokuapp.com/api/allcities/${id}`
+      `https://mytinerary-farfan.herokuapp.com/api/allcities/${id}`
     );
     return data;
   } catch (error) {

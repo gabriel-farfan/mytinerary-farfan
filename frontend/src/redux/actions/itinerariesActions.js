@@ -4,7 +4,7 @@ const itinerariesActions = {
 
     getItinerariesPerCity: (id) => {
         return async (dispatch, getState) => {
-            let res = await axios.get(`https://mytinerary-farfan.herokuapp.com//api/itineraries/${id}`);
+            let res = await axios.get(`https://mytinerary-farfan.herokuapp.com/api/itineraries/${id}`);
             // console.log(res.data.response);
             return (res.data.response)
             // dispatch({
