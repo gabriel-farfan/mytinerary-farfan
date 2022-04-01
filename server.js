@@ -9,8 +9,8 @@ const Router = require ('./routes/routes')
 const passport = require("passport")
 const app = express();
 const path = require('path')
-// const PORT = process.env.PORT || 4000;
-// const HOST = process.env.HOST || '0.0.0.0'
+const PORT = process.env.PORT || 4000;
+const HOST = process.env.HOST || '0.0.0.0'
 
 // Middlewares
 
@@ -26,4 +26,5 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-app.listen(PORT, () => console.log("Server ready on PORT" + PORT));
+
+app.listen(PORT, HOST, () => console.log("Server ready on PORT" + PORT));

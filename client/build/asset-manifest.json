@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a274e4ad.css",
+    "main.js": "/static/js/main.d2713341.js",
+    "static/media/colosseo02.png": "/static/media/colosseo02.c71e168b14c3aacccb08.png",
+    "static/media/www.jpg": "/static/media/www.56ce0ae8367f556ca79c.jpg",
+    "static/media/toscana.jpg": "/static/media/toscana.218b19e399a7d2863cd1.jpg",
+    "static/media/Air-Plane-icon.png": "/static/media/Air-Plane-icon.eacb64a99c95e7a4c2cf.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html",
+    "static/media/logousr.svg": "/static/media/logousr.56ecd47523b62555a2df70811f3d8ebd.svg",
+    "main.a274e4ad.css.map": "/static/css/main.a274e4ad.css.map",
+    "main.d2713341.js.map": "/static/js/main.d2713341.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a274e4ad.css",
+    "static/js/main.d2713341.js"
+  ]
+}

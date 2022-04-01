@@ -39,8 +39,8 @@ function Details(props) {
   const [dataItinerary, setDataItinerary] = useState([])
   const [expanded, setExpanded] = React.useState(false);
   const [inputText, setInputText] = useState("");
-  const [ modify, setModify ] = useState(false);
-  const [ reload, setReload ] = useState(false);
+  const [modify, setModify] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -65,12 +65,12 @@ function Details(props) {
 
   function LikeButton(idItinerary) {
     if (props.user) {
-    props.likeItinerary(idItinerary)
-      .then(response => setDataItinerary(response))
-  } else {
-    alert("You must be logged in to like an itinerary")
+      props.likeItinerary(idItinerary)
+        .then(response => setDataItinerary(response))
+    } else {
+      alert("You must be logged in to like an itinerary")
+    }
   }
-}
 
   function addComment(id) {
     // setReload(!reload)
@@ -82,18 +82,21 @@ function Details(props) {
       .then(response => setDataItinerary(response))
   }
 
-  function modifyComment(event) {
+  async function modifyComment(id) {
     const commentData = {
-      itineraryId: event.target.id,
+      itineraryId: id,
       comment: modify,
     }
-    props.modifyComment(commentData)
-    .then(response => setDataItinerary(response))
-    }
-    
-    function deleteComment(id) { 
-      props.deleteComment(dataItinerary.target.id)
-      .then(response => console.log(response))
+    await props.modifyComment(commentData)
+    setReload(!reload)
+      .then(response => setDataItinerary(response))
+  }
+
+  function deleteComment(id) {
+    props.deleteComment(id)
+    setReload(!reload)
+
+    .then(response => console.log(response))
   }
 
   if (!detailData) {
@@ -103,11 +106,11 @@ function Details(props) {
 
 
   {/* CITY ------------------------------------ */ }
-  
+
   return (
     <div className="card-detail-main">
       {console.log(detailData)}
-          <div className="details-container">
+      <div className="details-container">
         {detailData?.map((city) => (
           <Card key={city._id}>
             <CardActionArea>
@@ -197,54 +200,54 @@ function Details(props) {
                   </Typography>
                   <Typography paragraph>
                     <h4>Hashtags #:{itinerary.hashtags}</h4>
-                    <h4>Likes: {itinerary.likes.length}</h4>
+                    <h4>Likes: {itinerary.likes}</h4>
                   </Typography>
                 </CardContent>
 
                 {/* ACTIVITY CALL */}
-              <Activity itinerary = {itinerary._id}/>
+                <Activity itinerary={itinerary._id} />
               </Collapse>
 
               {itinerary?.comments.map(comment =>
-                  <>
-                    {comment.userId?._id !== props.user?.id ?
-                      <div className="card cardComments " key={comment._id}>
-                        <div className="card-header">
-                          {comment.userId?.fullName}
-                        </div>
-                        <div className="card-body-comments">
-                          <p className="card-text-comment">{comment.comment}</p>
-                        </div>
-                      </div> :
-
-                      <div className="card cardComments">
-                        <div className="card-header">
-                          {comment.userId?.fullName}
-                        </div>
-                        <div className="card-body-comments">
-                          <textarea type="text" className="card-text textComments" onChange={(event) => setModify(event.target.value)} defaultValue={comment.comment} />
-                          <button id={comment._id} onClick={modifyComment} class="btn btn-primary">Edit</button>
-                          <button id={comment._id} onClick={deleteComment} class="btn btn-primary">Delete</button>
-                        </div>
+                <>
+                  {comment.userId?._id !== props.user?.id ?
+                    <div className="card cardComments " key={comment._id}>
+                      <div className="card-header">
+                        {comment.userId?.fullName}
                       </div>
+                      <div className="card-body-comments">
+                        <p className="card-text-comment">{comment.comment}</p>
+                      </div>
+                    </div> :
 
-                    }
-                  </>
-                )}
-
-
-                {props.user ?
-                  <div className="card cardComments">
-                    <div className="card-header">
-                    LEAVE US YOUR COMMENT! 
+                    <div className="card cardComments">
+                      <div className="card-header">
+                        {comment.userId?.fullName}
+                      </div>
+                      <div className="card-body-comments">
+                        <textarea type="text" className="card-text textComments" onChange={(event) => setModify(event.target.value)} defaultValue={comment.comment} />
+                        <button id={comment._id} onClick={() => modifyComment (comment._id)} class="btn btn-primary">Edit</button>
+                        <button id={comment._id} onClick={() => deleteComment (comment._id)} class="btn btn-primary">Delete</button>
+                      </div>
                     </div>
-                    <div className="card-body-addcomment ">
-                      <textarea onChange={(event) => setInputText(event.target.value)} className="card-text textComments" value={inputText} />
-                      <button onClick={() => { addComment(itinerary._id) }} class="btn btn-primary"> OK! </button>
-                    </div>
-                  </div> :
-                  <h1>Do Sign In to make a Comment! Thank You!</h1>
-                }
+
+                  }
+                </>
+              )}
+
+
+              {props.user ?
+                <div className="card cardComments">
+                  <div className="card-header">
+                    LEAVE US YOUR COMMENT!
+                  </div>
+                  <div className="card-body-addcomment ">
+                    <textarea onChange={(event) => setInputText(event.target.value)} className="card-text textComments" value={inputText} />
+                    <button onClick={() => { addComment(itinerary._id) }} class="btn btn-primary"> OK! </button>
+                  </div>
+                </div> :
+                <h1>Do Sign In to make a Comment! Thank You!</h1>
+              }
 
 
             </Card>

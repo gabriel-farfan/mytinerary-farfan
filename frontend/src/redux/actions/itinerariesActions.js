@@ -90,40 +90,64 @@ const itinerariesActions = {
         }
     },
 
+
     modifyComment: (comment) => {
         const token = localStorage.getItem("token")
         return async (dispatch, getState) => {
             try {
-                let response = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments`, { comment }, {
+                let response = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments/${comment.commentId}`, { comment }, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 })
+      
+                dispatch({type:"message", payload: {view: true, message: response.data.message, success: response.data.success}})
                 console.log(response)
-                return response.data.response.devolver
-
+                return response
+      
             } catch (error) {
                 console.log(error)
             }
         }
-    },
+      },
 
-    deleteComment: (commentId) => {
+
+
+    // modifyComment: (comment) => {
+    //     const token = localStorage.getItem("token")
+    //     return async (dispatch, getState) => {
+    //         try {
+    //             let response = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments`, { comment }, {
+    //                 headers: {
+    //                     Authorization: 'Bearer ' + token
+    //                 }
+    //             })
+    //             console.log(response)
+    //             return response.data.response.devolver
+
+    //         } catch (error) {
+    //             console.log(error)
+    //         }
+    //     }
+    // },
+
+    deleteComment: (id) => {
         const token = localStorage.getItem("token")
-        return async () => {
+        return async (dispatch, getState) => {
             try {
-                let response = await axios.put(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments`, { commentId }, {
+                let response = await axios.delete(`https://mytinerary-farfan.herokuapp.com/api/itinerary/comments/${id}`, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
                 })
+                dispatch({type:"deleteComment", payload : {view: true, message: response.data.message, success: response.data.success}})
                 console.log(response)
             } catch (error) {
                 console.log(error)
             }
         }
     }
-
+    
 };
 
 export default itinerariesActions;
