@@ -2,8 +2,6 @@ This is a Itineraries website inspired in Italy places...
 
 It's been used React, MongoDB as database, Express, Redux and Material UI.
 
-You can see a live demo on: https://mytinerary-farfan.herokuapp.com/
-
 
 # Getting Started with Create React App
 
